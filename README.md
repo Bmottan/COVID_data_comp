@@ -1,3 +1,4 @@
+
 # COVID_data_comp
 COVID data compilation from CWB, PR, BR and MA.
 
@@ -8,13 +9,13 @@ COVID data compilation from CWB, PR, BR and MA.
 - Curitiba:
     - Prefeitura Minicipal de Curitiba <https://coronavirus.curitiba.pr.gov.br/painelcovid/>
 
-- Paran√°:
-    - Wesley Cota, PhD (Universidade Federal de Vi√ßosa) <https://covid19br.wcota.me/>
+- Paran·:
+    - Wesley Cota, PhD (Universidade Federal de ViÁosa) <https://covid19br.wcota.me/>
 
 - Brazil:
-    - Wesley Cota, PhD (Universidade Federal de Vi√ßosa) <https://covid19br.wcota.me/>
+    - Wesley Cota, PhD (Universidade Federal de ViÁosa) <https://covid19br.wcota.me/>
 
 - Massachusetts:
     - New York times <https://github.com/nytimes/covid-19-data>
     - Johns Hopkins Centers for Civic Impact for the Coronavirus Resource Center <https://github.com/govex/COVID-19>
-    
+

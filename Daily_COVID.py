@@ -997,7 +997,7 @@ total_casos = int(total_casos)
 
 nav.quit()
 
-CWB = pd.read_csv (r"C:\\Users\\Bruno\\Desktop\\COVID19\\CWB_data2.csv", sep=",")
+CWB = pd.read_csv (r"C:\Users\Bruno\Documents\GitHub\COVID_data_comp\Import Data\CWB_data2.csv", sep=",")
 
 
 i = CWB['date'].iloc[-1]
@@ -1284,7 +1284,7 @@ dose2 = int(dose2.text)
 nav.quit()
 
 
-df = pd.read_csv (r'C:\\Users\\Bruno\\Desktop\\COVID19\\CWBvax.csv')
+df = pd.read_csv (r'C:\Users\Bruno\Documents\GitHub\COVID_data_comp\Import Data\CWBvax.csv')
 
 i = df['Data'].iloc[-1]
 
@@ -1394,7 +1394,13 @@ f.close()
 
 print('Save complete.')
 
+from git import Repo
 
+repo = Repo()
+repo.git.add('--all')  # to add all the working files.
+repo.git.commit('-m', 'Daily update')
+#origin = repo.remote(name='origin')
+#origin.push()
 
 
 print('Github upload complete.')
