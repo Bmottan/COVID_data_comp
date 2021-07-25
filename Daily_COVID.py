@@ -36,7 +36,7 @@ else:
 htmlText = response.text
 
 # Write CSV file
-folder = r'C:\Users\Bruno\Documents\GitHub\COVID_data_comp\Import Data\'
+folder = r'C:\Users\Bruno\Documents\GitHub\COVID_data_comp\Import Data\\'
 file2write=open(folder + today + "-BR.csv",'w')
 file2write.write(htmlText)
 file2write.close()
@@ -1361,7 +1361,7 @@ fig.subplots_adjust(left=0.03, right=0.97, top=0.93, bottom=0.08)
 
 plt.show()
 
-folder = r'C:\Users\Bruno\Documents\GitHub\COVID_data_comp\Graphs\'
+folder = r'C:\Users\Bruno\Documents\GitHub\COVID_data_comp\Graphs\\'
 fig.savefig(folder + today + ".png")
 print('Save complete.')
 
