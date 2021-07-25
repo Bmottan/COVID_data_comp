@@ -36,7 +36,7 @@ else:
 htmlText = response.text
 
 # Write CSV file
-folder = r'C:\\Users\\Bruno\\Desktop\\COVID19\\Import Data\\'
+folder = r'C:\Users\Bruno\Documents\GitHub\COVID_data_comp\Import Data\'
 file2write=open(folder + today + "-BR.csv",'w')
 file2write.write(htmlText)
 file2write.close()
@@ -1013,7 +1013,7 @@ if i != data_atual:
 r = len(CWB)
 c = len(CWB.columns)
 
-CWB.to_csv(r"C:\\Users\\Bruno\\Desktop\\COVID19\\CWB_data2.csv", index=False)
+CWB.to_csv(r"C:\Users\Bruno\Documents\GitHub\COVID_data_comp\Import Data\CWB_data2.csv", index=False)
 
 #Calculate 7 day means - Cases
 CWBcases = CWB.loc[0:r, 'newCases']
@@ -1293,7 +1293,7 @@ if i != data_atual:
     df2 = {'Data': data_atual,'Total1dose': dose1, 'Total2dose': dose2}
     df = df.append(df2, ignore_index=True)
 
-df.to_csv(r'C:\\Users\\Bruno\\Desktop\\COVID19\\CWBvax.csv', index=False)
+df.to_csv(r'C:\Users\Bruno\Documents\GitHub\COVID_data_comp\Import Data\CWBvax.csv', index=False)
 
 r = len(df)
 c = len(df.columns)
@@ -1361,7 +1361,7 @@ fig.subplots_adjust(left=0.03, right=0.97, top=0.93, bottom=0.08)
 
 plt.show()
 
-folder = r'C:\\Users\\Bruno\\Desktop\\COVID19\\Graphs\\'
+folder = r'C:\Users\Bruno\Documents\GitHub\COVID_data_comp\Graphs\'
 fig.savefig(folder + today + ".png")
 print('Save complete.')
 
