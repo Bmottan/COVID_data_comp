@@ -1356,6 +1356,8 @@ print('Curitiba data - complete.')
 #_____________________________________________________________________________
 
 print('Plotting...')
+
+# Save Figure
 #fig.tight_layout()
 fig.subplots_adjust(left=0.03, right=0.97, top=0.93, bottom=0.08)
 
@@ -1364,7 +1366,7 @@ plt.show()
 folder = r'C:\Users\Bruno\Documents\GitHub\COVID_data_comp\Graphs\\'
 fig.savefig(folder + today + ".png")
 
-
+# Update README file
 f = open("README.md", "w")
 descrip = '''
 # COVID_data_comp
@@ -1392,7 +1394,7 @@ f.write(descrip)
 f.close()
 
 
-print('Save complete.')
+print('Save complete. Updating Git...')
 
 
 # Git commands to track version and upload to Github
@@ -1402,7 +1404,7 @@ repo = Repo(r'C:\Users\Bruno\Documents\GitHub\COVID_data_comp\.git')
 repo.git.add('--all')  # to add all the working files.
 repo.git.commit('-m', 'Daily update')
 #origin = repo.remote(name='origin')
-#origin.push()
+#origin.push() #not working yet...
 
 
 print('Github upload complete.')
