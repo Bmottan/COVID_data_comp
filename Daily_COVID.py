@@ -1402,9 +1402,9 @@ from git import Repo
 
 repo = Repo(r'C:\Users\Bruno\Documents\GitHub\COVID_data_comp\.git')
 repo.git.add('--all')  # to add all the working files.
-repo.git.commit('-m', 'Daily update')
+repo.git.commit('-m', 'Daily update') #Commit and comment
 origin = repo.remote(name='origin')
-origin.push() #not working yet... maybe
+origin.push() #push to Github
 
 
 print('Github upload complete.')
