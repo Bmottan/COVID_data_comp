@@ -1394,9 +1394,11 @@ f.close()
 
 print('Save complete.')
 
+
+# Git commands to track version and upload to Github
 from git import Repo
 
-repo = Repo()
+repo = Repo(r'C:\Users\Bruno\Documents\GitHub\COVID_data_comp\.git')
 repo.git.add('--all')  # to add all the working files.
 repo.git.commit('-m', 'Daily update')
 #origin = repo.remote(name='origin')
