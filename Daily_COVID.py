@@ -1404,7 +1404,7 @@ repo = Repo(r'C:\Users\Bruno\Documents\GitHub\COVID_data_comp\.git')
 repo.git.add('--all')  # to add all the working files.
 repo.git.commit('-m', 'Daily update')
 origin = repo.remote(name='origin')
-origin.push() #not working yet...
+origin.push() #not working yet... maybe
 
 
 print('Github upload complete.')
