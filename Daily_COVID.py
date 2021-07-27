@@ -1367,7 +1367,7 @@ folder = r'C:\Users\Bruno\Documents\GitHub\COVID_data_comp\Graphs\\'
 fig.savefig(folder + today + ".png")
 
 # Update README file
-f = open("README.md", "w")
+f = open(r"C:\Users\Bruno\Documents\GitHub\COVID_data_comp\README.md", "w")
 descrip = '''
 # COVID_data_comp
 COVID data compilation from CWB, PR, BR and MA.
