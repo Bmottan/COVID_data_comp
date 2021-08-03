@@ -7,7 +7,7 @@ COVID data compilation from CWB, PR, BR and MA.
 
 ## Sources:
 - Curitiba:
-    - Prefeitura Minicipal de Curitiba <https://coronavirus.curitiba.pr.gov.br/painelcovid/>
+    - Prefeitura Municipal de Curitiba <https://coronavirus.curitiba.pr.gov.br/painelcovid/>
 
 - Paraná:
     - Wesley Cota, PhD (Universidade Federal de Viçosa) <https://covid19br.wcota.me/>
