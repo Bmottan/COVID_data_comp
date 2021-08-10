@@ -1271,13 +1271,13 @@ y1.annotate(r'$\times$10$^{%i}$'%(exponent_axis),  rotation = 90,
 
 
 nav = webdriver.Chrome()
-nav.get('https://coronavirus.curitiba.pr.gov.br/imuniza-ja/')
-data_atual = nav.find_element_by_xpath('//*[@id="cphBodyMaster_ucVacinometro_lblDataAtualizacaoVacinacao"]')
+nav.get('https://coronavirus.curitiba.pr.gov.br/#numerosCovid')
+data_atualvax = nav.find_element_by_xpath('//*[@id="cphBodyMaster_ucVacinometro_lblDataAtualizacaoVacinacao"]')
 dose1 = nav.find_element_by_xpath('//*[@id="cphBodyMaster_ucVacinometro_lblContadorVacinas"]')
 dose2 = nav.find_element_by_xpath('//*[@id="cphBodyMaster_ucVacinometro_lblContadorSegundaDose"]')
 
     
-data_atual = data_atual.text
+data_atualvax = data_atualvax.text
 dose1 = int(dose1.text)
 dose2 = int(dose2.text)
 
@@ -1289,8 +1289,8 @@ df = pd.read_csv (r'C:\Users\Bruno\Documents\GitHub\COVID_data_comp\Import Data\
 i = df['Data'].iloc[-1]
 
 
-if i != data_atual:
-    df2 = {'Data': data_atual,'Total1dose': dose1, 'Total2dose': dose2}
+if i != data_atualvax:
+    df2 = {'Data': data_atualvax,'Total1dose': dose1, 'Total2dose': dose2}
     df = df.append(df2, ignore_index=True)
 
 df.to_csv(r'C:\Users\Bruno\Documents\GitHub\COVID_data_comp\Import Data\CWBvax.csv', index=False)
