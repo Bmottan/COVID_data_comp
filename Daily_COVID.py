@@ -276,13 +276,39 @@ y1.plot(BR['date'], BR['vaccinated'], color = 'orange')
 y1.plot(BR['date'], BR['vaccinated_second'], color = 'green')
 # Set plot title and axes labels
 
+#percentages text
+BRpop = 211000000
+marks = [BRpop*0.1, BRpop*0.2,BRpop*0.3, BRpop*0.4, BRpop*0.5, BRpop*0.6, BRpop*0.7]
+marksv1 = []
+marksv2 = []
+c = 0
+for x in BR.index:
+    for y in range(len(marks)):
+        if marks[c]<=BR.at[x,'vaccinated'] and marks[c]>=BR.at[x-1,'vaccinated'] :
+            mark=x
+            marksv1.append(mark)
+            c=c+1
+c=0
+for x in BR.index:
+    for y in range(len(marks)):
+        if marks[c]<=BR.at[x,'vaccinated_second'] and marks[c]>=BR.at[x-1,'vaccinated_second'] :
+            mark=x
+            marksv2.append(mark)
+            c=c+1
+txt=['10%','20%','30%','40%','50%','60%','70%']
+for i in range(len(marksv1)):
+    plt.text(marksv1[i], marks[i], txt[i])
+for i in range(len(marksv2)):
+    plt.text(marksv2[i], marks[i], txt[i])
+
+
 y1.set_xlabel('Date', loc='center', fontsize=18)
 y1.set_ylabel('Vaccinated', loc='center', fontsize=18)
 y1.xaxis.set_major_locator(ticker.MultipleLocator(14))
 plt.setp(y1.get_xticklabels(), rotation = 90)
 
-pop1 = (BR.loc[r-1, 'vaccinated']/211000000)*100
-pop2 = (BR.loc[r-1, 'vaccinated_second']/211000000)*100
+pop1 = (BR.loc[r-1, 'vaccinated']/BRpop)*100
+pop2 = (BR.loc[r-1, 'vaccinated_second']/BRpop)*100
 recent = '\n'.join(('1st dose: {:,.0f}'.format(BR.loc[r-1, 'vaccinated']),
                     'Full vax: {:,.0f}'.format(BR.loc[r-1, 'vaccinated_second']),
                     'Pop. 1st: %.2f'% pop1 + '%',
@@ -534,6 +560,34 @@ y1 = fig.add_subplot(gs[4,2:4])
 y1.plot(PR['date'], PR['vaccinated'], color = 'orange')
 y1.plot(PR['date'], PR['vaccinated_second'], color = 'green')
 # Set plot title and axes labels
+
+#percentages text
+PRpop = 11080000
+marks = [PRpop*0.1, PRpop*0.2,PRpop*0.3, PRpop*0.4, PRpop*0.5, PRpop*0.6, PRpop*0.7]
+marksv1 = []
+marksv2 = []
+c = 0
+for x in PR.index:
+    for y in range(len(marks)):
+        if marks[c]<=PR.at[x,'vaccinated'] and marks[c]>=PR.at[x-1,'vaccinated'] :
+            mark=x
+            marksv1.append(mark)
+            c=c+1
+c=0
+for x in PR.index:
+    for y in range(len(marks)):
+        if marks[c]<=PR.at[x,'vaccinated_second'] and marks[c]>=PR.at[x-1,'vaccinated_second'] :
+            mark=x
+            marksv2.append(mark)
+            c=c+1
+txt=['10%','20%','30%','40%','50%','60%','70%']
+for i in range(len(marksv1)):
+    plt.text(marksv1[i], marks[i], txt[i])
+for i in range(len(marksv2)):
+    plt.text(marksv2[i], marks[i], txt[i])
+
+
+
 #y1.set(title = " ",
 #       xlabel = "Date",
 #       ylabel = "Vaccinated")
@@ -542,8 +596,8 @@ y1.set_ylabel('Vaccinated', loc='center',fontsize=18)
 y1.xaxis.set_major_locator(ticker.MultipleLocator(14))
 plt.setp(y1.get_xticklabels(), rotation = 90)
 
-pop1 = (PR.loc[r-1, 'vaccinated']/11080000)*100
-pop2 = (PR.loc[r-1, 'vaccinated_second']/11080000)*100
+pop1 = (PR.loc[r-1, 'vaccinated']/PRpop)*100
+pop2 = (PR.loc[r-1, 'vaccinated_second']/PRpop)*100
 recent = '\n'.join(('1st dose: {:,.0f}'.format(PR.loc[r-1, 'vaccinated']),
                     'Full vax: {:,.0f}'.format(PR.loc[r-1, 'vaccinated_second']),
                     'Pop. 1st: %.2f'% pop1 + '%',
@@ -874,10 +928,6 @@ df.sort_values(by=['Province_State','Vaccine_Type','Date'], inplace=True)
 
 
 
-
-
-
-
 grouped = df.groupby(df.Province_State)
 MA = grouped.get_group("Massachusetts")
 MA = MA.drop(['FIPS','Country_Region','Lat','Long_','Combined_Key'], axis=1)
@@ -918,13 +968,42 @@ y1 = fig.add_subplot(gs[4,6:8])
 y1.plot(MAallvax['Date'], MAvax['1stdose'], color = 'orange')
 y1.plot(MAallvax['Date'], MAvax['Fullvax'], color = 'green')
 # Set plot title and axes labels
+
+#percentages text
+MApop = 6893000
+marks = [MApop*0.1, MApop*0.2, MApop*0.3, MApop*0.4, MApop*0.5, MApop*0.6, MApop*0.7]
+marksv1 = []
+marksv2 = []
+c = 0
+for x in MAvax.index:
+    for y in range(len(marks)):
+        if marks[c]<=MAvax.at[x,'1stdose'] and marks[c]>=MAvax.at[x-1,'1stdose'] :
+            mark=x
+            marksv1.append(mark)
+            c=c+1
+c=0
+for x in MAvax.index:
+    for y in range(len(marks)):
+        if marks[c]<=MAvax.at[x,'Fullvax'] and marks[c]>=MAvax.at[x-1,'Fullvax'] :
+            mark=x
+            marksv2.append(mark)
+            c=c+1
+txt=['10%','20%','30%','40%','50%','60%','70%']
+for i in range(len(marksv1)):
+    plt.text(marksv1[i], marks[i], txt[i])
+for i in range(len(marksv2)):
+    plt.text(marksv2[i], marks[i], txt[i])
+
+
+
+
 y1.set_xlabel('Date', loc='center', fontsize=18)
 y1.set_ylabel('Vaccinated', loc='center', fontsize=18)
 y1.xaxis.set_major_locator(ticker.MultipleLocator(14))
 plt.setp(y1.get_xticklabels(), rotation = 90)
 
-pop1 = (MAvax.loc[r-1, '1stdose']/6893000)*100
-pop2 = (MAvax.loc[r-1, 'Fullvax']/6893000)*100
+pop1 = (MAvax.loc[r-1, '1stdose']/MApop)*100
+pop2 = (MAvax.loc[r-1, 'Fullvax']/MApop)*100
 recent = '\n'.join(('1st dose: {:,.0f}'.format(MAvax.loc[r-1, '1stdose']),
                     'Full vax: {:,.0f}'.format(MAvax.loc[r-1, 'Fullvax']),
                     'Pop. 1st: %.2f'% pop1 + '%',
@@ -1304,13 +1383,40 @@ y1 = fig.add_subplot(gs[4,0:2])
 y1.plot(df['Data'], df['Total1dose'], color = 'orange')
 y1.plot(df['Data'], df['Total2dose'], color = 'green')
 # Set plot title and axes labels
+
+#percentages text
+CWBpop = 1948626
+marks = [CWBpop*0.1, CWBpop*0.2, CWBpop*0.3, CWBpop*0.4, CWBpop*0.5, CWBpop*0.6, CWBpop*0.7]
+marksv1 = []
+marksv2 = []
+c = 0
+for x in df.index:
+    for y in range(len(marks)):
+        if marks[c]<=df.at[x,'Total1dose'] and marks[c]>=df.at[x-1,'Total1dose'] :
+            mark=x
+            marksv1.append(mark)
+            c=c+1
+c=0
+for x in df.index:
+    for y in range(len(marks)):
+        if marks[c]<=df.at[x,'Total2dose'] and marks[c]>=df.at[x-1,'Total2dose'] :
+            mark=x
+            marksv2.append(mark)
+            c=c+1
+txt=['10%','20%','30%','40%','50%','60%','70%']
+for i in range(len(marksv1)):
+    plt.text(marksv1[i], marks[i], txt[i])
+for i in range(len(marksv2)):
+    plt.text(marksv2[i], marks[i], txt[i])
+
+
 y1.set_xlabel('Date', loc='center', fontsize=18)
 y1.set_ylabel('Vaccinated', loc='center', fontsize=18)
 y1.xaxis.set_major_locator(ticker.MultipleLocator(14))
 plt.setp(y1.get_xticklabels(), rotation = 90)
 
-pop1 = (df.loc[r-1, 'Total1dose']/1948626)*100
-pop2 = (df.loc[r-1, 'Total2dose']/1948626)*100
+pop1 = (df.loc[r-1, 'Total1dose']/CWBpop)*100
+pop2 = (df.loc[r-1, 'Total2dose']/CWBpop)*100
 recent = '\n'.join(('1st dose: {:,.0f}'.format(df.loc[r-1, 'Total1dose']),
                     'Ful vax: {:,.0f}'.format(df.loc[r-1, 'Total2dose']),
                     'Pop. 1st: %.2f'% pop1 + '%',
