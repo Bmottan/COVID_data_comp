@@ -267,16 +267,7 @@ exponent_axis = np.floor(np.log10(ax_max)).astype(int)
 y1.annotate(r'$\times$10$^{%i}$'%(exponent_axis),  rotation = 90,
              xy=(0.01, .85), xycoords='axes fraction', fontsize=14, color='red')
 
-
-
-
-# Define x and y axes - Suplot 4vax
-y1 = fig.add_subplot(gs[4,4:6])
-y1.plot(BR['date'], BR['vaccinated'], color = 'orange')
-y1.plot(BR['date'], BR['vaccinated_second'], color = 'green')
-# Set plot title and axes labels
-
-#percentages text
+#percentages pop
 BRpop = 211000000
 marks = [BRpop*0.1, BRpop*0.2,BRpop*0.3, BRpop*0.4, BRpop*0.5, BRpop*0.6, BRpop*0.7]
 marksv1 = []
@@ -295,6 +286,37 @@ for x in BR.index:
             mark=x
             marksv2.append(mark)
             c=c+1
+txt=['10%','20%','30%','40%','50%','60%','70%']
+
+
+inivac = 346 #inicio da vacinação
+
+#13/06/20 a 17/08: bandeira laranja
+for vac in range(len(marksv1)):
+    if vac == 0:
+        delta = marksv1[vac]-inivac+1
+        plt.arrow(inivac,ax_max/4, delta, 0, color='blue',linewidth=20,linestyle='-', alpha=0.2, head_length=0)
+    elif vac < len(marksv1)-1:
+        delta = marksv1[vac+1]-marksv1[vac]+1
+        plt.arrow(marksv1[vac],ax_max/4, delta, 0, color='orange',linewidth=20,linestyle='-', alpha=0.2, head_length=0)
+
+
+
+
+
+
+
+
+
+
+# Define x and y axes - Suplot 4vax
+y1 = fig.add_subplot(gs[4,4:6])
+y1.plot(BR['date'], BR['vaccinated'], color = 'orange')
+y1.plot(BR['date'], BR['vaccinated_second'], color = 'green')
+# Set plot title and axes labels
+
+#percentages text
+
 txt=['10%','20%','30%','40%','50%','60%','70%']
 for i in range(len(marksv1)):
     plt.text(marksv1[i], marks[i], txt[i])
@@ -349,7 +371,7 @@ newax.axis('off')
 
 print('Brazil data - complete.')
 
-
+#%%
 
 #_____________________________________________________________________________
 # PARANA
