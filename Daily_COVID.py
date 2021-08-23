@@ -287,10 +287,10 @@ for x in BR.index:
             marksv2.append(mark)
             c=c+1
 txt=['10%','20%','30%','40%','50%','60%','70%']
-
+color=['']
 
 inivac = 346 #inicio da vacinação
-
+#%%
 #13/06/20 a 17/08: bandeira laranja
 for vac in range(len(marksv1)):
     if vac == 0:
@@ -301,13 +301,21 @@ for vac in range(len(marksv1)):
         plt.arrow(marksv1[vac],ax_max/4, delta, 0, color='orange',linewidth=20,linestyle='-', alpha=0.2, head_length=0)
 
 
+vacin = BR['vaccinated_second']/BRpop
+
+left, bottom, width, height = [0, 0.5, 1, 0.2]
+ax2 = fig.add_axes([left, bottom, width, height])
+plt.imshow((BR['date'].index, vacin), cmap='jet_r')
 
 
+from matplotlib.collections import LineCollection
+lc = LineCollection(BR['7dayMeanDeaths'], cmap='viridis')
+# Set the values used for colormapping
+lc.set_array(vacin)
+lc.set_linewidth(2)
+line = axs[0].add_collection(lc)
 
-
-
-
-
+#%%
 
 # Define x and y axes - Suplot 4vax
 y1 = fig.add_subplot(gs[4,4:6])
@@ -371,7 +379,7 @@ newax.axis('off')
 
 print('Brazil data - complete.')
 
-#%%
+
 
 #_____________________________________________________________________________
 # PARANA
