@@ -7,7 +7,7 @@ import requests
 from selenium import webdriver
 import matplotlib.gridspec as gridspec
 import numpy as np
-
+import seaborn as sns
 
 #_____________________________________________________________________________
 
@@ -231,13 +231,52 @@ y1.annotate(r'$\times$10$^{%i}$'%(exponent_axis),  rotation = 90,
 
 # Define x and y axes - Suplot 3newdeath
 y1 = fig.add_subplot(gs[2,4:6])
-y1.bar(BR['date'], BR['newDeaths'], color = 'pink')
+
+
+##shade of vaccination 2 doses
+#percentages pop
+BRpop = 211000000
+marks = [BRpop*0.1, BRpop*0.2,BRpop*0.3, BRpop*0.4, BRpop*0.5, BRpop*0.6, BRpop*0.7]
+marksv1 = []
+marksv2 = []
+c = 0
+for x in BR.index:
+    for y in range(len(marks)):
+        if marks[c]<=BR.at[x,'vaccinated'] and marks[c]>=BR.at[x-1,'vaccinated'] :
+            mark=x
+            marksv1.append(mark)
+            c=c+1
+c=0
+for x in BR.index:
+    for y in range(len(marks)):
+        if marks[c]<=BR.at[x,'vaccinated_second'] and marks[c]>=BR.at[x-1,'vaccinated_second'] :
+            mark=x
+            marksv2.append(mark)
+            c=c+1
+txt=['10%','20%','30%','40%','50%','60%','70%']
+
+#vaccination heatmap
+BR['vacin'] = (BR['vaccinated_second']/BRpop)*100
+y2 = plt.twinx()
+sns.heatmap([BR['vacin']], vmin=-25, vmax=100,
+            cmap='jet_r', cbar=False, alpha=0.2, zorder=1)
+y2.axes.get_xaxis().set_visible(False)
+y2.axes.get_yaxis().set_visible(False)
+
+
+
+
+
+
+
+#New deaths graph
+y1.bar(BR['date'], BR['newDeaths'], color = 'pink', zorder=2)
 # Set plot title and axes labels
 y1.set_ylabel('New Deaths', loc='center', fontsize=18)
 y1.xaxis.set_major_locator(ticker.MultipleLocator(30))
 plt.setp(y1.get_xticklabels(), rotation = 90)
 
-y1.plot(BR['date'], BR['7dayMeanDeaths'], color = 'magenta')
+y1.plot(BR['date'], BR['7dayMeanDeaths'], color = 'magenta', zorder=3)
 
 recent = '\n'.join((
     'New deaths: {:,}'.format(BR.loc[r-1, 'newDeaths']),
@@ -267,29 +306,11 @@ exponent_axis = np.floor(np.log10(ax_max)).astype(int)
 y1.annotate(r'$\times$10$^{%i}$'%(exponent_axis),  rotation = 90,
              xy=(0.01, .85), xycoords='axes fraction', fontsize=14, color='red')
 
-#percentages pop
-BRpop = 211000000
-marks = [BRpop*0.1, BRpop*0.2,BRpop*0.3, BRpop*0.4, BRpop*0.5, BRpop*0.6, BRpop*0.7]
-marksv1 = []
-marksv2 = []
-c = 0
-for x in BR.index:
-    for y in range(len(marks)):
-        if marks[c]<=BR.at[x,'vaccinated'] and marks[c]>=BR.at[x-1,'vaccinated'] :
-            mark=x
-            marksv1.append(mark)
-            c=c+1
-c=0
-for x in BR.index:
-    for y in range(len(marks)):
-        if marks[c]<=BR.at[x,'vaccinated_second'] and marks[c]>=BR.at[x-1,'vaccinated_second'] :
-            mark=x
-            marksv2.append(mark)
-            c=c+1
-txt=['10%','20%','30%','40%','50%','60%','70%']
-color=['']
+y1.annotate(r'Fully vax:',xy=(280, 4000), fontsize=14, color='black')
+top = [4000,4000,4000,4000,4000,4000,4000]
+for i in range(len(marksv2)):
+    y1.annotate('{}'.format(txt[i]),xy=(marksv2[i], top[i]), fontsize=14, color='black')
 
-inivac = 346 #inicio da vacinação
 
 
 # Define x and y axes - Suplot 4vax
