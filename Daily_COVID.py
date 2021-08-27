@@ -257,14 +257,15 @@ txt=['10%','20%','30%','40%','50%','60%','70%']
 
 #vaccination heatmap
 BR['vacin'] = (BR['vaccinated_second']/BRpop)*100
+
+BR['empty']=np.nan
+
+
 y2 = plt.twinx()
-sns.heatmap([BR['vacin']], vmin=-25, vmax=100,
+sns.heatmap([BR['vacin'],BR['empty'],BR['empty'],BR['empty'],BR['empty'],BR['empty']], vmin=-25, vmax=100,
             cmap='jet_r', cbar=False, alpha=0.2, zorder=1)
 y2.axes.get_xaxis().set_visible(False)
 y2.axes.get_yaxis().set_visible(False)
-
-
-
 
 
 
