@@ -185,7 +185,7 @@ plt.arrow(370, ax_max/3, 100, 0, color='red',head_width=ax_max/30, head_length=1
 
 
 
-# Define x and y axes - Suplot 2necase
+# Define x and y axes - Suplot 2newcase
 y1 = fig.add_subplot(gs[1,4:6])
 plt.bar(BR['date'], BR['newCases'], color = 'lightblue')
 # Set plot title and axes labels
@@ -226,8 +226,8 @@ y1.annotate(r'$\times$10$^{%i}$'%(exponent_axis),  rotation = 90,
              xy=(0.01, .85), xycoords='axes fraction', fontsize=14, color='blue')
 
 
-
-
+x_max = max(y1.get_xticks())
+x_min = min(y1.get_xticks())
 
 # Define x and y axes - Suplot 3newdeath
 y1 = fig.add_subplot(gs[2,4:6])
@@ -256,28 +256,26 @@ for x in BR.index:
 txt=['10%','20%','30%','40%','50%','60%','70%']
 
 #vaccination heatmap
-BR['vacin'] = (BR['vaccinated_second']/BRpop)*100
+#BR['vacin'] = (BR['vaccinated_second']/BRpop)*100
 
-BR['empty']=np.nan
-
-
-y2 = plt.twinx()
-sns.heatmap([BR['vacin'],BR['empty'],BR['empty'],BR['empty'],BR['empty'],BR['empty']], vmin=-25, vmax=100,
-            cmap='jet_r', cbar=False, alpha=0.2, zorder=1)
-y2.axes.get_xaxis().set_visible(False)
-y2.axes.get_yaxis().set_visible(False)
+#BR['empty']=np.nan
 
 
+#y2 = plt.twinx()
+#sns.heatmap([BR['vacin'],BR['empty'],BR['empty'],BR['empty'],BR['empty'],BR['empty']], vmin=-25, vmax=100,
+#            cmap='jet_r', cbar=False, alpha=0.2)
+#y2.axes.get_xaxis().set_visible(False)
+#y2.axes.get_yaxis().set_visible(False)
 
 
 #New deaths graph
-y1.bar(BR['date'], BR['newDeaths'], color = 'pink', zorder=2)
+y1.bar(BR['date'], BR['newDeaths'], color = 'pink')
 # Set plot title and axes labels
 y1.set_ylabel('New Deaths', loc='center', fontsize=18)
 y1.xaxis.set_major_locator(ticker.MultipleLocator(30))
 plt.setp(y1.get_xticklabels(), rotation = 90)
 
-y1.plot(BR['date'], BR['7dayMeanDeaths'], color = 'magenta', zorder=3)
+y1.plot(BR['date'], BR['7dayMeanDeaths'], color = 'magenta')
 
 recent = '\n'.join((
     'New deaths: {:,}'.format(BR.loc[r-1, 'newDeaths']),
@@ -307,10 +305,10 @@ exponent_axis = np.floor(np.log10(ax_max)).astype(int)
 y1.annotate(r'$\times$10$^{%i}$'%(exponent_axis),  rotation = 90,
              xy=(0.01, .85), xycoords='axes fraction', fontsize=14, color='red')
 
-y1.annotate(r'Fully vax:',xy=(280, 4000), fontsize=14, color='black')
-top = [4000,4000,4000,4000,4000,4000,4000]
-for i in range(len(marksv2)):
-    y1.annotate('{}'.format(txt[i]),xy=(marksv2[i], top[i]), fontsize=14, color='black')
+#y1.annotate(r'Fully vax:',xy=(280, 4000), fontsize=14, color='black')
+#top = [4000,4000,4000,4000,4000,4000,4000]
+#for i in range(len(marksv2)):
+#    y1.annotate('{}'.format(txt[i]),xy=(marksv2[i], top[i]), fontsize=14, color='black')
 
 
 
