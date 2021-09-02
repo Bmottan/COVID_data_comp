@@ -1199,7 +1199,7 @@ y2.text(0.95, 0.05, recent, transform=y1.transAxes, fontsize=14,
 
 
 y2.yaxis.label.set_color('red')
-y2.set_ylim([-0.2e3, 7e3])
+y2.set_ylim([-0.2e3, 8e3])
 plt.minorticks_on()
 y2.tick_params(axis='y', colors='red', direction='out',which='minor', length=5, 
                 bottom=False, top=False, left=False, right=True)
