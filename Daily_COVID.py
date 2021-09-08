@@ -1379,11 +1379,12 @@ nav.get('https://coronavirus.curitiba.pr.gov.br/#numerosCovid')
 data_atualvax = nav.find_element_by_xpath('//*[@id="cphBodyMaster_ucVacinometro_lblDataAtualizacaoVacinacao"]')
 dose1 = nav.find_element_by_xpath('//*[@id="cphBodyMaster_ucVacinometro_lblContadorVacinas"]')
 dose2 = nav.find_element_by_xpath('//*[@id="cphBodyMaster_ucVacinometro_lblContadorSegundaDose"]')
+dose3 = nav.find_element_by_xpath('//*[@id="cphBodyMaster_ucVacinometro_lblContadorDoseReforco"]')
 
-    
 data_atualvax = data_atualvax.text
 dose1 = int(dose1.text)
 dose2 = int(dose2.text)
+dose3 = int(dose3.text)
 
 nav.quit()
 
@@ -1394,7 +1395,7 @@ i = df['Data'].iloc[-1]
 
 
 if i != data_atualvax:
-    df2 = {'Data': data_atualvax,'Total1dose': dose1, 'Total2dose': dose2}
+    df2 = {'Data': data_atualvax,'Total1dose': dose1, 'Total2dose': dose2, 'Reforco': dose3}
     df = df.append(df2, ignore_index=True)
 
 df.to_csv(r'C:\Users\Bruno\Documents\GitHub\COVID_data_comp\Import Data\CWBvax.csv', index=False)
@@ -1407,13 +1408,15 @@ c = len(df.columns)
 y1 = fig.add_subplot(gs[4,0:2])
 y1.plot(df['Data'], df['Total1dose'], color = 'orange')
 y1.plot(df['Data'], df['Total2dose'], color = 'green')
+y1.plot(df['Data'], df['Reforco'], color = 'purple')
 # Set plot title and axes labels
 
 #percentages text
 CWBpop = 1948626
-marks = [CWBpop*0.1, CWBpop*0.2, CWBpop*0.3, CWBpop*0.4, CWBpop*0.5, CWBpop*0.6, CWBpop*0.7]
+marks = [CWBpop*0.1, CWBpop*0.2, CWBpop*0.3, CWBpop*0.4, CWBpop*0.5, CWBpop*0.6, CWBpop*0.7,CWBpop*0.8]
 marksv1 = []
 marksv2 = []
+marksv3 = []
 c = 0
 for x in df.index:
     for y in range(len(marks)):
@@ -1428,12 +1431,20 @@ for x in df.index:
             mark=x
             marksv2.append(mark)
             c=c+1
-txt=['10%','20%','30%','40%','50%','60%','70%']
+c=0
+for x in df.index:
+    for y in range(len(marks)):
+        if marks[c]<=df.at[x,'Reforco'] and marks[c]>=df.at[x-1,'Reforco'] :
+            mark=x
+            marksv3.append(mark)
+            c=c+1
+txt=['10%','20%','30%','40%','50%','60%','70%','80%']
 for i in range(len(marksv1)):
     plt.text(marksv1[i], marks[i], txt[i])
 for i in range(len(marksv2)):
     plt.text(marksv2[i], marks[i], txt[i])
-
+for i in range(len(marksv3)):
+    plt.text(marksv3[i], marks[i], txt[i])
 
 y1.set_xlabel('Date', loc='center', fontsize=18)
 y1.set_ylabel('Vaccinated', loc='center', fontsize=18)
