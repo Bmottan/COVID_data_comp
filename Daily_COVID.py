@@ -330,9 +330,9 @@ y1.annotate(r'$\times$10$^{%i}$'%(exponent_axis),  rotation = 90,
 
 # Define x and y axes - Suplot 4vax
 y1 = fig.add_subplot(gs[4,4:6])
-y1.plot(BR['date'], BR['vaccinated'], color = 'orange')
-y1.plot(BR['date'], BR_fullvax, color = 'green')
-y1.plot(BR['date'], BR['vaccinated_third'], color = 'purple')
+y1.plot(BR['date'], BR['vaccinated'], color = 'orange', label='1st dose')
+y1.plot(BR['date'], BR_fullvax, color = 'green', label='2nd + single dose')
+y1.plot(BR['date'], BR['vaccinated_third'], color = 'purple', label='Third dose')
 # Set plot title and axes labels
 
 #percentages text
@@ -378,7 +378,7 @@ ax_max = max(y1.get_yticks())
 exponent_axis = np.floor(np.log10(ax_max)).astype(int)
 y1.annotate(r'$\times$10$^{%i}$'%(exponent_axis),  rotation = 90,
              xy=(0.01, .85), xycoords='axes fraction', fontsize=14, color='green')
-
+y1.legend(loc='upper center', bbox_to_anchor=(0.38, 0.86), frameon=False, ncol=1)
 
 
 
@@ -645,9 +645,9 @@ for i in range(len(marksv2)):
 for i in range(len(marksv3)):
     plt.text(marksv3[i], marks[i], txt[i])
 
-y1.plot(PR['date'], PR['vaccinated'], color = 'orange')
-y1.plot(PR['date'], PR_fullvax, color = 'green')
-y1.plot(PR['date'], PR['vaccinated_third'], color = 'purple')
+y1.plot(PR['date'], PR['vaccinated'], color = 'orange', label='1st dose')
+y1.plot(PR['date'], PR_fullvax, color = 'green', label='2nd + single dose')
+y1.plot(PR['date'], PR['vaccinated_third'], color = 'purple', label='3rd dose')
 #y1.set(title = " ",
 #       xlabel = "Date",
 #       ylabel = "Vaccinated")
@@ -686,7 +686,7 @@ ax_max = max(y1.get_yticks())
 exponent_axis = np.floor(np.log10(ax_max)).astype(int)
 y1.annotate(r'$\times$10$^{%i}$'%(exponent_axis),  rotation = 90,
              xy=(0.01, .85), xycoords='axes fraction', fontsize=14, color='green')
-
+y1.legend(loc='upper center', bbox_to_anchor=(0.38, 0.86), frameon=False, ncol=1)
 
 
 PRflag = plt.imread(r'C:\Users\Bruno\Desktop\COVID19\Bandeira\Flag_Paraná.png')
@@ -1025,8 +1025,8 @@ c = len(MAvax.columns)
 
 # Define x and y axes - Suplot 5
 y1 = fig.add_subplot(gs[4,6:8])
-y1.plot(MAallvax['Date'], MAvax['1stdose'], color = 'orange')
-y1.plot(MAallvax['Date'], MAvax['Fullvax'], color = 'green')
+y1.plot(MAallvax['Date'], MAvax['1stdose'], color = 'orange', label='1st dose')
+y1.plot(MAallvax['Date'], MAvax['Fullvax'], color = 'green', label='2nd + single dose')
 # Set plot title and axes labels
 
 #percentages text
@@ -1091,7 +1091,7 @@ ax_max = max(y1.get_yticks())
 exponent_axis = np.floor(np.log10(ax_max)).astype(int)
 y1.annotate(r'$\times$10$^{%i}$'%(exponent_axis),  rotation = 90,
              xy=(0.01, .85), xycoords='axes fraction', fontsize=14, color='green')
-
+y1.legend(loc='upper center', bbox_to_anchor=(0.38, 0.86), frameon=False, ncol=1)
 
 
 MAflag = plt.imread(r'C:\Users\Bruno\Desktop\COVID19\Bandeira\Flag_Massachusetts.jpg')
@@ -1361,7 +1361,7 @@ exponent_axis = np.floor(np.log10(ax_max)).astype(int)
 y1.annotate(r'$\times$10$^{%i}$'%(exponent_axis),  rotation = 90,
              xy=(0.01, .85), xycoords='axes fraction', fontsize=14, color='blue')
 
-
+plt.text(552, 0.5e3, 'Me \n ↓')
 
 
 # Define x and y axes - Suplot 3 new death
@@ -1441,9 +1441,9 @@ c = len(df.columns)
 
 # Define x and y axes - Suplot 4vax
 y1 = fig.add_subplot(gs[4,0:2])
-y1.plot(df['Data'], df['Total1dose'], color = 'orange')
-y1.plot(df['Data'], df['Total2dose'], color = 'green')
-y1.plot(df['Data'], df['Reforco'], color = 'purple')
+y1.plot(df['Data'], df['Total1dose'], color = 'orange', label='1st dose')
+y1.plot(df['Data'], df['Total2dose'], color = 'green', label='2nd + single dose')
+y1.plot(df['Data'], df['Reforco'], color = 'purple', label='3rd dose')
 # Set plot title and axes labels
 
 #percentages text
@@ -1515,8 +1515,8 @@ ax_max = max(y1.get_yticks())
 exponent_axis = np.floor(np.log10(ax_max)).astype(int)
 y1.annotate(r'$\times$10$^{%i}$'%(exponent_axis),  rotation = 90,
              xy=(0.01, .85), xycoords='axes fraction', fontsize=14, color='green')
-
-
+y1.legend(loc='upper center', bbox_to_anchor=(0.38, 0.86), frameon=False, ncol=1)
+plt.text(194, 1.1e6, 'Me \n ↓')
 
 
 CWBflag = plt.imread(r'C:\Users\Bruno\Desktop\COVID19\Bandeira\Flag_Curitiba.png')
