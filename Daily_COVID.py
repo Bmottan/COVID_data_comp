@@ -1517,7 +1517,7 @@ y1.annotate(r'$\times$10$^{%i}$'%(exponent_axis),  rotation = 90,
              xy=(0.01, .85), xycoords='axes fraction', fontsize=14, color='green')
 y1.legend(loc='upper center', bbox_to_anchor=(0.38, 0.86), frameon=False, ncol=1)
 plt.text(194, 1.1e6, 'Me\n↓')
-
+plt.text(252, 1.1e6, 'Me\n↓')
 
 CWBflag = plt.imread(r'C:\Users\Bruno\Desktop\COVID19\Bandeira\Flag_Curitiba.png')
 newax = fig.add_axes([0.1, 0.86, 0.06, 0.06], zorder=1)
