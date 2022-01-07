@@ -604,7 +604,7 @@ y1 = fig.add_subplot(gs[4,2:4])
 
 #percentages text
 PRpop = 11080000
-marks = [PRpop*0.1, PRpop*0.2,PRpop*0.3, PRpop*0.4, PRpop*0.5, PRpop*0.6, PRpop*0.7, PRpop*0.8]
+marks = [PRpop*0.1, PRpop*0.2,PRpop*0.3, PRpop*0.4, PRpop*0.5, PRpop*0.6, PRpop*0.7, PRpop*0.8, PRpop*0.9]
 marksv1 = []
 marksv2 = []
 marksv3=[]
@@ -1031,7 +1031,7 @@ y1.plot(MAallvax['Date'], MAvax['Fullvax'], color = 'green', label='2nd + single
 
 #percentages text
 MApop = 6893000
-marks = [MApop*0.1, MApop*0.2, MApop*0.3, MApop*0.4, MApop*0.5, MApop*0.6, MApop*0.7, MApop*0.8]
+marks = [MApop*0.1, MApop*0.2, MApop*0.3, MApop*0.4, MApop*0.5, MApop*0.6, MApop*0.7, MApop*0.8, MApop*0.9]
 marksv1 = []
 marksv2 = []
 c = 0
@@ -1115,7 +1115,11 @@ print('Mass data - complete.')
 
 print('Connection 3 OK. Saving data...')
 
-nav = webdriver.Chrome()
+options = webdriver.ChromeOptions()
+options.headless = True
+
+
+nav = webdriver.Chrome(options=options)
 nav.get('https://coronavirus.curitiba.pr.gov.br/#numerosCovid')
 data_atual = nav.find_element_by_xpath('//*[@id="cphBodyMaster_lblDataAtualizacao"]')
 total_obitos = nav.find_element_by_xpath('//*[@id="cphBodyMaster_lblObitos"]')
@@ -1408,8 +1412,11 @@ y1.annotate(r'$\times$10$^{%i}$'%(exponent_axis),  rotation = 90,
 
 #CWB vaccine
 
+options = webdriver.ChromeOptions()
+options.headless = True
 
-nav = webdriver.Chrome()
+
+nav = webdriver.Chrome(options=options)
 nav.get('https://coronavirus.curitiba.pr.gov.br/#numerosCovid')
 data_atualvax = nav.find_element_by_xpath('//*[@id="cphBodyMaster_ucVacinometro_lblDataAtualizacaoVacinacao"]')
 dose1 = nav.find_element_by_xpath('//*[@id="cphBodyMaster_ucVacinometro_lblContadorVacinas"]')
