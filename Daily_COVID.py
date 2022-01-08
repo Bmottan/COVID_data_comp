@@ -117,7 +117,7 @@ plt.plot(BR['date'], BR['totalCases'], color = 'blue', linestyle='-', alpha=0.8)
 
 y1.set_ylabel('Total Cases', loc='center', fontsize=18)
 y1.xaxis.set_major_locator(ticker.MultipleLocator(30))
-y1.set_title('Brazil', fontsize=25, fontweight='bold')
+y1.set_title('Brazil - NO UPDATE!!!!!!', fontsize=25, fontweight='bold')
 
 recent = '\n'.join(("Total cases: {:,}".format( BR.loc[r-1, 'totalCases'] ),
     BR.loc[r-1, 'date']))
@@ -187,7 +187,10 @@ plt.arrow(370, ax_max/3, 100, 0, color='red',head_width=ax_max/30, head_length=1
 
 # Define x and y axes - Suplot 2newcase
 y1 = fig.add_subplot(gs[1,4:6])
-plt.bar(BR['date'], BR['newCases'], color = 'lightblue')
+plt.bar(BR.loc[0:310,'date'], BR.loc[0:310,'newCases'], color = '#add8e6')#2020
+plt.bar(BR.loc[311:675,'date'], BR.loc[311:675,'newCases'], color = '#73adc0')#2021
+plt.bar(BR.loc[676:,'date'], BR.loc[676:,'newCases'], color = '#add8e6')#2022
+
 # Set plot title and axes labels
 
 y1.set_ylabel('New Cases', loc='center', fontsize=18)
@@ -228,6 +231,7 @@ y1.annotate(r'$\times$10$^{%i}$'%(exponent_axis),  rotation = 90,
 
 x_max = max(y1.get_xticks())
 x_min = min(y1.get_xticks())
+
 
 # Define x and y axes - Suplot 3newdeath
 y1 = fig.add_subplot(gs[2,4:6])
@@ -285,7 +289,11 @@ txt=['10%','20%','30%','40%','50%','60%','70%','80%']
 
 
 #New deaths graph
-y1.bar(BR['date'], BR['newDeaths'], color = 'pink')
+
+y1.bar(BR.loc[0:310,'date'], BR.loc[0:310,'newDeaths'], color = '#ffc0cb')#2020
+y1.bar(BR.loc[311:675,'date'], BR.loc[311:675,'newDeaths'], color = '#e193a1')#2021
+y1.bar(BR.loc[676:,'date'], BR.loc[676:,'newDeaths'], color = '#ffc0cb')#2022
+
 # Set plot title and axes labels
 y1.set_ylabel('New Deaths', loc='center', fontsize=18)
 y1.xaxis.set_major_locator(ticker.MultipleLocator(30))
@@ -442,7 +450,7 @@ y1.plot(PR['date'], PR['totalCases'], color = 'blue', linestyle='-', alpha=0.8)
 
 y1.set_ylabel('Total Cases', loc='center',fontsize=18)
 y1.xaxis.set_major_locator(ticker.MultipleLocator(30))
-y1.set_title('Paraná', fontsize=25, fontweight='bold')
+y1.set_title('Paraná - NO UPDATE!!!!!!', fontsize=25, fontweight='bold')
 
 recent = '\n'.join(('Total cases: {:,}'.format(PR.loc[r-1, 'totalCases']),
     PR.loc[r-1, 'date']))
@@ -489,7 +497,7 @@ y2.text(0.95, 0.05, recent, transform=y1.transAxes, fontsize=14,
 y2.set_ylabel('Total Deaths', loc='center',fontsize=18)
 
 y2.yaxis.label.set_color('red')
-y2.set_ylim([-0.2e4, 4e4])
+y2.set_ylim([-0.2e4, 5e4])
 plt.minorticks_on()
 y2.tick_params(axis='y', colors='red', direction='out',which='minor', length=5, 
                 bottom=False, top=False, left=False, right=True)
@@ -514,7 +522,10 @@ plt.arrow(370, ax_max/3, 100, 0, color='red',head_width=ax_max/30, head_length=1
 
 # Define x and y axes - Suplot 2newcases
 y1 = fig.add_subplot(gs[1,2:4])
-y1.bar(PR['date'], PR['newCases'], color = 'lightblue')
+y1.bar(PR.loc[0:294,'date'], PR.loc[0:294,'newCases'], color = '#add8e6')#2020
+y1.bar(PR.loc[295:659,'date'], PR.loc[295:659,'newCases'], color = '#73adc0')#2021
+y1.bar(PR.loc[660:,'date'], PR.loc[660:,'newCases'], color = '#add8e6')#2022
+
 # Set plot title and axes labels
 
 y1.set_ylabel('New Cases', loc='center',fontsize=18)
@@ -557,7 +568,10 @@ y1.annotate(r'$\times$10$^{%i}$'%(exponent_axis),  rotation = 90,
 
 # Define x and y axes - Suplot 3newdeaths
 y1 = fig.add_subplot(gs[2,2:4])
-y1.bar(PR['date'], PR['newDeaths'], color = 'pink')
+y1.bar(PR.loc[0:294,'date'], PR.loc[0:294,'newDeaths'], color = '#ffc0cb')#2020
+y1.bar(PR.loc[295:659,'date'], PR.loc[295:659,'newDeaths'], color = '#e193a1')#2021
+y1.bar(PR.loc[660:,'date'], PR.loc[660:,'newDeaths'], color = '#ffc0cb')#2022
+
 # Set plot title and axes labels
 y1.set_ylabel('New Deaths', loc='center',fontsize=18)
 y1.xaxis.set_major_locator(ticker.MultipleLocator(30))
@@ -845,7 +859,7 @@ y2.text(0.95, 0.05, recent, transform=y1.transAxes, fontsize=14,
         verticalalignment='bottom',  horizontalalignment='right', bbox=props)
 
 y2.yaxis.label.set_color('red')
-y2.set_ylim([-0.1e4, 2e4])
+y2.set_ylim([-0.1e4, 2.5e4])
 plt.minorticks_on()
 y2.tick_params(axis='y', colors='red', direction='out',which='minor', length=5, 
                 bottom=False, top=False, left=False, right=True)
@@ -862,21 +876,24 @@ exponent_axis = np.floor(np.log10(ax_max)).astype(int)
 y2.annotate(r'$\times$10$^{%i}$'%(exponent_axis), rotation = 90,
              xy=(0.975, .85), xycoords='axes fraction', fontsize=14, color='red')
 
-plt.arrow(350, 2*ax_max/3, 100, 0, color='red',head_width=ax_max/30, head_length=10)
+plt.arrow(390, 2*ax_max/3, 100, 0, color='red',head_width=ax_max/30, head_length=10)
 
 
 
 
 # Define x and y axes - Suplot 2 new cases
 y1 = fig.add_subplot(gs[1,6:8])
-y1.bar(MA['date'], MA['newCases'], color = 'lightblue')
+y1.bar(MA.loc[0:334,'date'], MA.loc[0:334,'newCases'], color = '#add8e6')#2020
+y1.bar(MA.loc[335:699,'date'], MA.loc[335:699,'newCases'], color = '#73adc0')#2021
+y1.bar(MA.loc[700:,'date'], MA.loc[700:,'newCases'], color = '#add8e6')#2022
+
 # Set plot title and axes labels
 
 y1.set_ylabel('New Cases', loc='center',fontsize=18)
 y1.xaxis.set_major_locator(ticker.MultipleLocator(30))
 
 y1.plot(MA['date'], MA['7dayMeanCases'], color = 'magenta')
-y1.set_ylim([0,8000])
+y1.set_ylim([0,30000])
 
 recent = '\n'.join((
     'New cases: {:,}'.format(MA.loc[r-1, 'newCases']),
@@ -912,7 +929,10 @@ y1.annotate(r'$\times$10$^{%i}$'%(exponent_axis),  rotation = 90,
 
 # Define x and y axes - Suplot 3 new deaths
 y1 = fig.add_subplot(gs[2,6:8])
-y1.bar(MA['date'], MA['newDeaths'], color = 'pink')
+y1.bar(MA.loc[0:334,'date'], MA.loc[0:334,'newDeaths'], color = '#ffc0cb')#2020
+y1.bar(MA.loc[335:699,'date'], MA.loc[335:699,'newDeaths'], color = '#e193a1')#2021
+y1.bar(MA.loc[700:,'date'], MA.loc[700:,'newDeaths'], color = '#ffc0cb')#2022
+
 # Set plot title and axes labels
 y1.set_ylabel('New Deaths', loc='center',fontsize=18)
 y1.xaxis.set_major_locator(ticker.MultipleLocator(30))
@@ -948,7 +968,7 @@ exponent_axis = np.floor(np.log10(ax_max)).astype(int)
 y1.annotate(r'$\times$10$^{%i}$'%(exponent_axis),  rotation = 90,
              xy=(0.01, .85), xycoords='axes fraction', fontsize=14, color='red')
 
-
+#%%
 
 
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -1238,7 +1258,7 @@ y2.text(0.95, 0.05, recent, transform=y1.transAxes, fontsize=14,
 
 
 y2.yaxis.label.set_color('red')
-y2.set_ylim([-0.2e3, 8e3])
+y2.set_ylim([-0.2e3, 9e3])
 plt.minorticks_on()
 y2.tick_params(axis='y', colors='red', direction='out',which='minor', length=5, 
                 bottom=False, top=False, left=False, right=True)
@@ -1328,7 +1348,12 @@ plt.arrow(int(indice1[0]), ax_max/4, r-int(indice1[0]), 0, color='yellow',linewi
 
 # Define x and y axes - Suplot 2 new cases
 y1 = fig.add_subplot(gs[1,0:2])
-y1.bar(CWB['date'], CWB['newCases'], color = 'lightblue')
+
+y1.bar(CWB.loc[0:294,'date'], CWB.loc[0:294,'newCases'], color = '#add8e6')#2020
+y1.bar(CWB.loc[295:659,'date'], CWB.loc[295:659,'newCases'], color = '#73adc0')#2021
+y1.bar(CWB.loc[660:,'date'], CWB.loc[660:,'newCases'], color = '#add8e6')#2022
+
+
 # Set plot title and axes labels
 y1.set_ylabel('New Cases', loc='center',fontsize=18)
 y1.xaxis.set_major_locator(ticker.MultipleLocator(30))
@@ -1370,7 +1395,10 @@ plt.text(552, 0.5e3, 'Me\n↓')
 
 # Define x and y axes - Suplot 3 new death
 y1 = fig.add_subplot(gs[2,0:2])
-y1.bar(CWB['date'], CWB['newDeaths'], color = 'pink')
+y1.bar(CWB.loc[0:294,'date'], CWB.loc[0:294,'newDeaths'], color = '#ffc0cb')#2020
+y1.bar(CWB.loc[295:659,'date'], CWB.loc[295:659,'newDeaths'], color = '#e193a1')#2021
+y1.bar(CWB.loc[660:,'date'], CWB.loc[660:,'newDeaths'], color = '#ffc0cb')#2022
+
 # Set plot title and axes labels
 y1.set_ylabel('New Deaths', loc='center',fontsize=18)
 y1.xaxis.set_major_locator(ticker.MultipleLocator(30))
