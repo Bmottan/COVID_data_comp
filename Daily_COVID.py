@@ -968,7 +968,7 @@ exponent_axis = np.floor(np.log10(ax_max)).astype(int)
 y1.annotate(r'$\times$10$^{%i}$'%(exponent_axis),  rotation = 90,
              xy=(0.01, .85), xycoords='axes fraction', fontsize=14, color='red')
 
-#%%
+
 
 
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
