@@ -117,7 +117,7 @@ plt.plot(BR['date'], BR['totalCases'], color = 'blue', linestyle='-', alpha=0.8)
 
 y1.set_ylabel('Total Cases', loc='center', fontsize=18)
 y1.xaxis.set_major_locator(ticker.MultipleLocator(30))
-y1.set_title('Brazil - NO UPDATE!!!!!!', fontsize=25, fontweight='bold')
+y1.set_title('Brazil', fontsize=25, fontweight='bold')
 
 recent = '\n'.join(("Total cases: {:,}".format( BR.loc[r-1, 'totalCases'] ),
     BR.loc[r-1, 'date']))
@@ -450,7 +450,7 @@ y1.plot(PR['date'], PR['totalCases'], color = 'blue', linestyle='-', alpha=0.8)
 
 y1.set_ylabel('Total Cases', loc='center',fontsize=18)
 y1.xaxis.set_major_locator(ticker.MultipleLocator(30))
-y1.set_title('Paraná - NO UPDATE!!!!!!', fontsize=25, fontweight='bold')
+y1.set_title('Paraná', fontsize=25, fontweight='bold')
 
 recent = '\n'.join(('Total cases: {:,}'.format(PR.loc[r-1, 'totalCases']),
     PR.loc[r-1, 'date']))
