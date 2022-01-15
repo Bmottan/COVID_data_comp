@@ -180,7 +180,7 @@ exponent_axis = np.floor(np.log10(ax_max)).astype(int)
 y2.annotate(r'$\times$10$^{%i}$'%(exponent_axis), rotation = 90,
              xy=(0.975, .85), xycoords='axes fraction', fontsize=14, color='red')
 
-plt.arrow(370, ax_max/3, 100, 0, color='red',head_width=ax_max/30, head_length=10)
+plt.arrow(400, ax_max/3, 100, 0, color='red',head_width=ax_max/30, head_length=10)
 
 
 
@@ -515,7 +515,7 @@ exponent_axis = np.floor(np.log10(ax_max)).astype(int)
 y2.annotate(r'$\times$10$^{%i}$'%(exponent_axis), rotation = 90,
              xy=(0.975, .85), xycoords='axes fraction', fontsize=14, color='red')
 
-plt.arrow(370, ax_max/3, 100, 0, color='red',head_width=ax_max/30, head_length=10)
+plt.arrow(400, ax_max/3, 100, 0, color='red',head_width=ax_max/30, head_length=10)
 
 
 
@@ -842,7 +842,7 @@ exponent_axis = np.floor(np.log10(ax_max)).astype(int)
 y1.annotate(r'$\times$10$^{%i}$'%(exponent_axis),  rotation = 90,
              xy=(0.01, .85), xycoords='axes fraction', fontsize=14, color='blue')
 
-plt.arrow(300, ax_max/3, -100, 0, color='blue',head_width=ax_max/30, head_length=10)
+plt.arrow(300, ax_max/4, -100, 0, color='blue',head_width=ax_max/30, head_length=10)
 
 
 
@@ -876,7 +876,7 @@ exponent_axis = np.floor(np.log10(ax_max)).astype(int)
 y2.annotate(r'$\times$10$^{%i}$'%(exponent_axis), rotation = 90,
              xy=(0.975, .85), xycoords='axes fraction', fontsize=14, color='red')
 
-plt.arrow(390, 2*ax_max/3, 100, 0, color='red',head_width=ax_max/30, head_length=10)
+plt.arrow(410, 2*ax_max/3, 100, 0, color='red',head_width=ax_max/30, head_length=10)
 
 
 
@@ -1275,7 +1275,7 @@ exponent_axis = np.floor(np.log10(ax_max)).astype(int)
 y2.annotate(r'$\times$10$^{%i}$'%(exponent_axis), rotation = 90,
              xy=(0.975, .85), xycoords='axes fraction', fontsize=14, color='red')
 
-plt.arrow(350, ax_max/3, 100, 0, color='red',head_width=ax_max/30, head_length=10)
+plt.arrow(380, ax_max/3, 100, 0, color='red',head_width=ax_max/30, head_length=10)
 
 
 
@@ -1359,7 +1359,7 @@ y1.set_ylabel('New Cases', loc='center',fontsize=18)
 y1.xaxis.set_major_locator(ticker.MultipleLocator(30))
 
 y1.plot(CWB['date'], CWB['7dayMeanCases'], color = 'magenta')
-y1.set_ylim([0, 1600])
+y1.set_ylim([0, 2000])
 
 recent = '\n'.join((
     'New cases: {:,}'.format(CWB.loc[r-1, 'newCases']),
