@@ -1359,7 +1359,7 @@ y1.set_ylabel('New Cases', loc='center',fontsize=18)
 y1.xaxis.set_major_locator(ticker.MultipleLocator(30))
 
 y1.plot(CWB['date'], CWB['7dayMeanCases'], color = 'magenta')
-y1.set_ylim([0, 2000])
+y1.set_ylim([0, 2200])
 
 recent = '\n'.join((
     'New cases: {:,}'.format(CWB.loc[r-1, 'newCases']),
@@ -1449,7 +1449,7 @@ nav.get('https://coronavirus.curitiba.pr.gov.br/#numerosCovid')
 data_atualvax = nav.find_element_by_xpath('//*[@id="cphBodyMaster_ucVacinometro_lblDataAtualizacaoVacinacao"]')
 dose1 = nav.find_element_by_xpath('//*[@id="cphBodyMaster_ucVacinometro_lblContadorVacinas"]')
 dose2 = nav.find_element_by_xpath('//*[@id="cphBodyMaster_ucVacinometro_lblContadorSegundaDose"]')
-dose3 = nav.find_element_by_xpath('//*[@id="cphBodyMaster_ucVacinometro_lblContadorDoseReforco"]')
+dose3 = nav.find_element_by_xpath('//*[@id="cphBodyMaster_ucVacinometro_lblContadorTerceiraDose"]')
 
 data_atualvax = data_atualvax.text
 dose1 = int(dose1.text)
