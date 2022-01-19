@@ -1447,9 +1447,9 @@ options.headless = True
 nav = webdriver.Chrome(options=options)
 nav.get('https://coronavirus.curitiba.pr.gov.br/#numerosCovid')
 data_atualvax = nav.find_element_by_xpath('//*[@id="cphBodyMaster_ucVacinometro_lblDataAtualizacaoVacinacao"]')
-dose1 = nav.find_element_by_xpath('//*[@id="cphBodyMaster_ucVacinometro_lblContadorVacinas"]')
-dose2 = nav.find_element_by_xpath('//*[@id="cphBodyMaster_ucVacinometro_lblContadorSegundaDose"]')
-dose3 = nav.find_element_by_xpath('//*[@id="cphBodyMaster_ucVacinometro_lblContadorTerceiraDose"]')
+dose1 = nav.find_element_by_xpath('//*[@id="cphBodyMaster_ucVacinometro_divVacinometro"]/div/div[1]/h4/label')
+dose2 = nav.find_element_by_xpath('//*[@id="cphBodyMaster_ucVacinometro_divVacinometro"]/div/div[2]/h4/label')
+dose3 = nav.find_element_by_xpath('//*[@id="cphBodyMaster_ucVacinometro_divVacinometro"]/div/div[3]/h4/label')
 
 data_atualvax = data_atualvax.text
 dose1 = int(dose1.text)
