@@ -1359,7 +1359,7 @@ y1.set_ylabel('New Cases', loc='center',fontsize=18)
 y1.xaxis.set_major_locator(ticker.MultipleLocator(30))
 
 y1.plot(CWB['date'], CWB['7dayMeanCases'], color = 'magenta')
-y1.set_ylim([0, 2200])
+y1.set_ylim([0, 2400])
 
 recent = '\n'.join((
     'New cases: {:,}'.format(CWB.loc[r-1, 'newCases']),
