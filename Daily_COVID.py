@@ -217,7 +217,7 @@ y1.tick_params(axis='y', colors='blue', direction='out',which='major', length=10
                 bottom=False, top=False, left=True, right=False, labelsize=14)
 plt.grid(which='major', axis='both', alpha=0.1)
 
-y1.set_ylim([0, 1e5])
+y1.set_ylim([0, 1.5e5])
 
 #sci notation
 y1.ticklabel_format(axis='y', style='sci', scilimits=(0,0))
