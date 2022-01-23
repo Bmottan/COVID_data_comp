@@ -340,16 +340,17 @@ y1.annotate(r'$\times$10$^{%i}$'%(exponent_axis),  rotation = 90,
 y1 = fig.add_subplot(gs[4,4:6])
 y1.plot(BR['date'], BR['vaccinated'], color = 'orange', label='1st dose')
 y1.plot(BR['date'], BR_fullvax, color = 'green', label='2nd + single dose')
-y1.plot(BR['date'], BR['vaccinated_third'], color = 'purple', label='Third dose')
+y1.plot(BR['date'], BR['vaccinated_third'], color = 'purple', label='3rd dose')
 # Set plot title and axes labels
 
 #percentages text
 
-txt=['10%','20%','30%','40%','50%','60%','70%']
 for i in range(len(marksv1)):
     plt.text(marksv1[i], marks[i], txt[i])
 for i in range(len(marksv2)):
     plt.text(marksv2[i], marks[i], txt[i])
+for i in range(len(marksv3)):
+    plt.text(marksv3[i], marks[i], txt[i])
 
 
 y1.set_xlabel('Date', loc='center', fontsize=18)
@@ -532,7 +533,7 @@ y1.set_ylabel('New Cases', loc='center',fontsize=18)
 y1.xaxis.set_major_locator(ticker.MultipleLocator(30))
 
 y1.plot(PR['date'], PR['7dayMeanCases'], color = 'magenta')
-y1.set_ylim([0, 1.4e4])
+y1.set_ylim([0, 2e4])
 
 recent = '\n'.join((
     'New cases: {:,}'.format(PR.loc[r-1, 'newCases']),
@@ -1359,7 +1360,7 @@ y1.set_ylabel('New Cases', loc='center',fontsize=18)
 y1.xaxis.set_major_locator(ticker.MultipleLocator(30))
 
 y1.plot(CWB['date'], CWB['7dayMeanCases'], color = 'magenta')
-y1.set_ylim([0, 2400])
+y1.set_ylim([0, 2500])
 
 recent = '\n'.join((
     'New cases: {:,}'.format(CWB.loc[r-1, 'newCases']),
