@@ -1,6 +1,7 @@
 from matplotlib import pyplot as plt
 import matplotlib.ticker as ticker
 from datetime import date
+from datetime import datetime, timedelta
 import statistics
 import pandas as pd
 import requests
@@ -392,7 +393,7 @@ y1.legend(loc='upper center', bbox_to_anchor=(0.38, 0.86), frameon=False, ncol=1
 
 
 
-BRflag = plt.imread(r'C:\Users\Bruno\Desktop\COVID19\Bandeira\Flag_Brazil.png')
+BRflag = plt.imread(r'C:\Users\Bruno\Documents\GitHub\COVID_data_comp\Bandeira\Flag_Brazil.png')
 newax = fig.add_axes([0.593, 0.86, 0.06, 0.06], zorder=1)
 newax.imshow(BRflag, alpha=0.5)
 newax.axis('off')
@@ -704,7 +705,7 @@ y1.annotate(r'$\times$10$^{%i}$'%(exponent_axis),  rotation = 90,
 y1.legend(loc='upper center', bbox_to_anchor=(0.38, 0.86), frameon=False, ncol=1)
 
 
-PRflag = plt.imread(r'C:\Users\Bruno\Desktop\COVID19\Bandeira\Flag_Paraná.png')
+PRflag = plt.imread(r'C:\Users\Bruno\Documents\GitHub\COVID_data_comp\Bandeira\Flag_Paraná.png')
 newax = fig.add_axes([0.345, 0.86, 0.06, 0.06], zorder=1)
 newax.imshow(PRflag, alpha=0.5)
 newax.axis('off')
@@ -1115,7 +1116,7 @@ y1.annotate(r'$\times$10$^{%i}$'%(exponent_axis),  rotation = 90,
 y1.legend(loc='upper center', bbox_to_anchor=(0.38, 0.86), frameon=False, ncol=1)
 
 
-MAflag = plt.imread(r'C:\Users\Bruno\Desktop\COVID19\Bandeira\Flag_Massachusetts.jpg')
+MAflag = plt.imread(r'C:\Users\Bruno\Documents\GitHub\COVID_data_comp\Bandeira\Flag_Massachusetts.jpg')
 newax = fig.add_axes([0.84, 0.87, 0.06, 0.06], zorder=1)
 newax.imshow(MAflag, alpha=0.5)
 newax.axis('off')
@@ -1129,8 +1130,6 @@ print('Mass data - complete.')
 #_____________________________________________________________________________
 # Curitiba
 #_____________________________________________________________________________
-
-
 
 
 
@@ -1152,6 +1151,8 @@ data_atual = data_atual.text
 
 data_atual = data_atual.replace('Atualizado em ', '')
 data_atual = data_atual[0:10]
+data_atual2 = datetime.strptime(data_atual,'%d/%m/%Y')
+
 
 total_obitos = total_obitos.text.replace('.','') 
 total_obitos = int(total_obitos)
@@ -1165,14 +1166,33 @@ CWB = pd.read_csv (r"C:\Users\Bruno\Documents\GitHub\COVID_data_comp\Import Data
 
 
 i = CWB['date'].iloc[-1]
+i2 = datetime.strptime(i,'%d/%m/%Y')
 
 
-if i != data_atual:
+if i2 == data_atual2:
+    print('No update for CWB data.')
+elif i2 == data_atual2-timedelta(days=1):
     ncases = total_casos - CWB['totalCases'].iloc[-1]
     ndeath = total_obitos - CWB['deaths'].iloc[-1]
     df2 = {'date': data_atual,'totalCases': total_casos, 'newCases':ncases ,'deaths': total_obitos, 'newDeaths':ndeath}
     CWB = CWB.append(df2, ignore_index=True)
-
+else:
+    print('Precisa atualizar manualmente os valores.')
+    cont = 1
+    d = i2 + timedelta(days=cont)
+    while d < data_atual2:
+        ncases = input("Enter NEW CASES on {}:".format(d))
+        tcases = CWB['totalCases'].iloc[-1] + ncases
+        ndeath = input("Enter NEW DEATHS on {}:".format(d))
+        tdeath = CWB['deaths'].iloc[-1] + ndeath
+        df2 = {'date': d.strftime("%d/%m/%Y"),'totalCases': tcases, 'newCases':ncases ,'deaths': tdeath, 'newDeaths':ndeath}
+        CWB = CWB.append(df2, ignore_index=True)
+        cont = cont+1
+        d = i2 + timedelta(days=cont)
+    ncases = total_casos - CWB['totalCases'].iloc[-1]
+    ndeath = total_obitos - CWB['deaths'].iloc[-1]
+    df2 = {'date': data_atual,'totalCases': total_casos, 'newCases':ncases ,'deaths': total_obitos, 'newDeaths':ndeath}
+    CWB = CWB.append(df2, ignore_index=True)
 
 r = len(CWB)
 c = len(CWB.columns)
@@ -1453,6 +1473,7 @@ dose2 = nav.find_element_by_xpath('//*[@id="cphBodyMaster_ucVacinometro_divVacin
 dose3 = nav.find_element_by_xpath('//*[@id="cphBodyMaster_ucVacinometro_divVacinometro"]/div/div[3]/h4/label')
 
 data_atualvax = data_atualvax.text
+data_atualvax2 = datetime.strptime(data_atualvax,'%d/%m/%Y')
 dose1 = int(dose1.text)
 dose2 = int(dose2.text)
 dose3 = int(dose3.text)
@@ -1463,11 +1484,29 @@ nav.quit()
 df = pd.read_csv (r'C:\Users\Bruno\Documents\GitHub\COVID_data_comp\Import Data\CWBvax.csv')
 
 i = df['Data'].iloc[-1]
+i2 = datetime.strptime(i,'%d/%m/%Y')
 
 
-if i != data_atualvax:
+if i2 == data_atualvax2:
+    print('No update for CWB vax data.')
+elif i2 == data_atualvax2-timedelta(days=1):
     df2 = {'Data': data_atualvax,'Total1dose': dose1, 'Total2dose': dose2, 'Reforco': dose3}
     df = df.append(df2, ignore_index=True)
+else:
+    print('Completando valores.')
+    cont = 1
+    d = i2 + timedelta(days=cont)
+    while d < data_atual2:
+        dose1 = df['Total1dose'].iloc[-1]
+        dose2 = df['Total2dose'].iloc[-1]
+        dose3 = df['Reforco'].iloc[-1]
+        df2 = {'Data': d.strftime("%d/%m/%Y"),'Total1dose': dose1, 'Total2dose': dose2, 'Reforco': dose3}
+        df = df.append(df2, ignore_index=True)
+        cont = cont+1
+        d = i2 + timedelta(days=cont)
+    df2 = {'Data': data_atualvax,'Total1dose': dose1, 'Total2dose': dose2, 'Reforco': dose3}
+    df = df.append(df2, ignore_index=True)
+
 
 df.to_csv(r'C:\Users\Bruno\Documents\GitHub\COVID_data_comp\Import Data\CWBvax.csv', index=False)
 
@@ -1555,7 +1594,7 @@ y1.legend(loc='upper center', bbox_to_anchor=(0.38, 0.86), frameon=False, ncol=1
 plt.text(194, 1.1e6, 'Me\n↓')
 plt.text(252, 1.1e6, 'Me\n↓')
 
-CWBflag = plt.imread(r'C:\Users\Bruno\Desktop\COVID19\Bandeira\Flag_Curitiba.png')
+CWBflag = plt.imread(r'C:\Users\Bruno\Documents\GitHub\COVID_data_comp\Bandeira\Flag_Curitiba.png')
 newax = fig.add_axes([0.1, 0.86, 0.06, 0.06], zorder=1)
 newax.imshow(CWBflag, alpha=0.5)
 newax.axis('off')
