@@ -218,7 +218,7 @@ y1.tick_params(axis='y', colors='blue', direction='out',which='major', length=10
                 bottom=False, top=False, left=True, right=False, labelsize=14)
 plt.grid(which='major', axis='both', alpha=0.1)
 
-y1.set_ylim([0, 1.5e5])
+y1.set_ylim([0, 1.8e5])
 
 #sci notation
 y1.ticklabel_format(axis='y', style='sci', scilimits=(0,0))
@@ -1181,9 +1181,9 @@ else:
     cont = 1
     d = i2 + timedelta(days=cont)
     while d < data_atual2:
-        ncases = input("Enter NEW CASES on {}:".format(d))
+        ncases = int(input("Enter NEW CASES on {}:".format(d)))
         tcases = CWB['totalCases'].iloc[-1] + ncases
-        ndeath = input("Enter NEW DEATHS on {}:".format(d))
+        ndeath = int(input("Enter NEW DEATHS on {}:".format(d)))
         tdeath = CWB['deaths'].iloc[-1] + ndeath
         df2 = {'date': d.strftime("%d/%m/%Y"),'totalCases': tcases, 'newCases':ncases ,'deaths': tdeath, 'newDeaths':ndeath}
         CWB = CWB.append(df2, ignore_index=True)
