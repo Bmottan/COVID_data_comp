@@ -1496,11 +1496,11 @@ else:
     print('Completando valores.')
     cont = 1
     d = i2 + timedelta(days=cont)
-    while d < data_atual2:
-        dose1 = df['Total1dose'].iloc[-1]
-        dose2 = df['Total2dose'].iloc[-1]
-        dose3 = df['Reforco'].iloc[-1]
-        df2 = {'Data': d.strftime("%d/%m/%Y"),'Total1dose': dose1, 'Total2dose': dose2, 'Reforco': dose3}
+    while d < data_atualvax2:
+        dose11 = df['Total1dose'].iloc[-1]
+        dose22 = df['Total2dose'].iloc[-1]
+        dose33 = df['Reforco'].iloc[-1]
+        df2 = {'Data': d.strftime("%d/%m/%Y"),'Total1dose': dose11, 'Total2dose': dose22, 'Reforco': dose33}
         df = df.append(df2, ignore_index=True)
         cont = cont+1
         d = i2 + timedelta(days=cont)
