@@ -1548,7 +1548,7 @@ for x in df.index:
             mark=x
             marksv3.append(mark)
             c=c+1
-txt=['10%','20%','30%','40%','50%','60%','70%','80%']
+txt=['10%','20%','30%','40%','50%','60%','70%','80%','90%']
 for i in range(len(marksv1)):
     plt.text(marksv1[i], marks[i], txt[i])
 for i in range(len(marksv2)):
