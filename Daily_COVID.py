@@ -218,7 +218,7 @@ y1.tick_params(axis='y', colors='blue', direction='out',which='major', length=10
                 bottom=False, top=False, left=True, right=False, labelsize=14)
 plt.grid(which='major', axis='both', alpha=0.1)
 
-y1.set_ylim([0, 1.8e5])
+y1.set_ylim([0, 2e5])
 
 #sci notation
 y1.ticklabel_format(axis='y', style='sci', scilimits=(0,0))
@@ -534,7 +534,7 @@ y1.set_ylabel('New Cases', loc='center',fontsize=18)
 y1.xaxis.set_major_locator(ticker.MultipleLocator(30))
 
 y1.plot(PR['date'], PR['7dayMeanCases'], color = 'magenta')
-y1.set_ylim([0, 2e4])
+y1.set_ylim([0, 2.5e4])
 
 recent = '\n'.join((
     'New cases: {:,}'.format(PR.loc[r-1, 'newCases']),
@@ -1380,7 +1380,7 @@ y1.set_ylabel('New Cases', loc='center',fontsize=18)
 y1.xaxis.set_major_locator(ticker.MultipleLocator(30))
 
 y1.plot(CWB['date'], CWB['7dayMeanCases'], color = 'magenta')
-y1.set_ylim([0, 3500])
+y1.set_ylim([0, 4000])
 
 recent = '\n'.join((
     'New cases: {:,}'.format(CWB.loc[r-1, 'newCases']),
