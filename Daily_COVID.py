@@ -1053,7 +1053,7 @@ y1.plot(MAallvax['Date'], MAvax['Fullvax'], color = 'green', label='2nd + single
 
 #percentages text
 MApop = 6893000
-marks = [MApop*0.1, MApop*0.2, MApop*0.3, MApop*0.4, MApop*0.5, MApop*0.6, MApop*0.7, MApop*0.8, MApop*0.9]
+marks = [MApop*0.1, MApop*0.2, MApop*0.3, MApop*0.4, MApop*0.5, MApop*0.6, MApop*0.7, MApop*0.8, MApop*0.9, MApop*1]
 marksv1 = []
 marksv2 = []
 c = 0
@@ -1070,7 +1070,7 @@ for x in MAvax.index:
             mark=x
             marksv2.append(mark)
             c=c+1
-txt=['10%','20%','30%','40%','50%','60%','70%','80%']
+txt=['10%','20%','30%','40%','50%','60%','70%','80%','90%']
 for i in range(len(marksv1)):
     plt.text(marksv1[i], marks[i], txt[i])
 for i in range(len(marksv2)):
