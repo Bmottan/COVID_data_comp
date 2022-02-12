@@ -241,7 +241,7 @@ y1 = fig.add_subplot(gs[2,4:6])
 ##shade of vaccination 2 doses
 #percentages pop
 BRpop = 211000000
-marks = [BRpop*0.1, BRpop*0.2,BRpop*0.3, BRpop*0.4, BRpop*0.5, BRpop*0.6, BRpop*0.7,BRpop*0.8]
+marks = [BRpop*0.1, BRpop*0.2,BRpop*0.3, BRpop*0.4, BRpop*0.5, BRpop*0.6, BRpop*0.7,BRpop*0.8,BRpop*0.9,BRpop]
 marksv1 = []
 marksv2 = []
 marksv3=[]
@@ -274,7 +274,7 @@ for x in BR.index:
             mark=x
             marksv3.append(mark)
             c=c+1
-txt=['10%','20%','30%','40%','50%','60%','70%','80%']
+txt=['10%','20%','30%','40%','50%','60%','70%','80%','90%','100%']
 
 #vaccination heatmap
 #BR['vacin'] = (BR['vaccinated_second']/BRpop)*100
@@ -1593,6 +1593,7 @@ y1.annotate(r'$\times$10$^{%i}$'%(exponent_axis),  rotation = 90,
 y1.legend(loc='upper center', bbox_to_anchor=(0.38, 0.86), frameon=False, ncol=1)
 plt.text(194, 1.1e6, 'Me\n↓')
 plt.text(252, 1.1e6, 'Me\n↓')
+plt.text(378, 7e5, 'Me\n↓')
 
 CWBflag = plt.imread(r'C:\Users\Bruno\Documents\GitHub\COVID_data_comp\Bandeira\Flag_Curitiba.png')
 newax = fig.add_axes([0.1, 0.86, 0.06, 0.06], zorder=1)
