@@ -1471,12 +1471,14 @@ data_atualvax = nav.find_element_by_xpath('//*[@id="cphBodyMaster_ucVacinometro_
 dose1 = nav.find_element_by_xpath('//*[@id="cphBodyMaster_ucVacinometro_divVacinometro"]/div/div[1]/h4/label')
 dose2 = nav.find_element_by_xpath('//*[@id="cphBodyMaster_ucVacinometro_divVacinometro"]/div/div[2]/h4/label')
 dose3 = nav.find_element_by_xpath('//*[@id="cphBodyMaster_ucVacinometro_divVacinometro"]/div/div[3]/h4/label')
+dose4 = nav.find_element_by_xpath('//*[@id="cphBodyMaster_ucVacinometro_divVacinometro"]/div/div[4]/h4/label')
 
 data_atualvax = data_atualvax.text
 data_atualvax2 = datetime.strptime(data_atualvax,'%d/%m/%Y')
 dose1 = int(dose1.text)
 dose2 = int(dose2.text)
 dose3 = int(dose3.text)
+dose4 = int(dose4.text)
 
 nav.quit()
 
@@ -1490,7 +1492,7 @@ i2 = datetime.strptime(i,'%d/%m/%Y')
 if i2 == data_atualvax2:
     print('No update for CWB vax data.')
 elif i2 == data_atualvax2-timedelta(days=1):
-    df2 = {'Data': data_atualvax,'Total1dose': dose1, 'Total2dose': dose2, 'Reforco': dose3}
+    df2 = {'Data': data_atualvax,'Total1dose': dose1, 'Total2dose': dose2, 'Reforco': dose3, 'Reforco2': dose4}
     df = df.append(df2, ignore_index=True)
 else:
     print('Completando valores.')
@@ -1500,11 +1502,12 @@ else:
         dose11 = df['Total1dose'].iloc[-1]
         dose22 = df['Total2dose'].iloc[-1]
         dose33 = df['Reforco'].iloc[-1]
-        df2 = {'Data': d.strftime("%d/%m/%Y"),'Total1dose': dose11, 'Total2dose': dose22, 'Reforco': dose33}
+        dose44 = df['Reforco2'].iloc[-1]
+        df2 = {'Data': d.strftime("%d/%m/%Y"),'Total1dose': dose11, 'Total2dose': dose22, 'Reforco': dose33, 'Reforco2': dose44}
         df = df.append(df2, ignore_index=True)
         cont = cont+1
         d = i2 + timedelta(days=cont)
-    df2 = {'Data': data_atualvax,'Total1dose': dose1, 'Total2dose': dose2, 'Reforco': dose3}
+    df2 = {'Data': data_atualvax,'Total1dose': dose1, 'Total2dose': dose2, 'Reforco': dose3, 'Reforco2': dose4}
     df = df.append(df2, ignore_index=True)
 
 
@@ -1519,6 +1522,7 @@ y1 = fig.add_subplot(gs[4,0:2])
 y1.plot(df['Data'], df['Total1dose'], color = 'orange', label='1st dose')
 y1.plot(df['Data'], df['Total2dose'], color = 'green', label='2nd + single dose')
 y1.plot(df['Data'], df['Reforco'], color = 'purple', label='3rd dose')
+y1.plot(df['Data'], df['Reforco'], color = 'pink', label='3rd dose')
 # Set plot title and axes labels
 
 #percentages text
@@ -1527,6 +1531,7 @@ marks = [CWBpop*0.1, CWBpop*0.2, CWBpop*0.3, CWBpop*0.4, CWBpop*0.5, CWBpop*0.6,
 marksv1 = []
 marksv2 = []
 marksv3 = []
+marksv4 = []
 c = 0
 for x in df.index:
     for y in range(len(marks)):
@@ -1548,6 +1553,13 @@ for x in df.index:
             mark=x
             marksv3.append(mark)
             c=c+1
+c=0
+for x in df.index:
+    for y in range(len(marks)):
+        if marks[c]<=df.at[x,'Reforco2'] and marks[c]>=df.at[x-1,'Reforco2'] :
+            mark=x
+            marksv4.append(mark)
+            c=c+1
 txt=['10%','20%','30%','40%','50%','60%','70%','80%','90%']
 for i in range(len(marksv1)):
     plt.text(marksv1[i], marks[i], txt[i])
@@ -1555,6 +1567,8 @@ for i in range(len(marksv2)):
     plt.text(marksv2[i], marks[i], txt[i])
 for i in range(len(marksv3)):
     plt.text(marksv3[i], marks[i], txt[i])
+for i in range(len(marksv4)):
+    plt.text(marksv4[i], marks[i], txt[i])
 
 y1.set_xlabel('Date', loc='center', fontsize=18)
 y1.set_ylabel('Vaccinated', loc='center', fontsize=18)
@@ -1563,10 +1577,10 @@ plt.setp(y1.get_xticklabels(), rotation = 90)
 
 pop1 = (df.loc[r-1, 'Total1dose']/CWBpop)*100
 pop2 = (df.loc[r-1, 'Total2dose']/CWBpop)*100
-recent = '\n'.join(('1st dose: {:,.0f}'.format(df.loc[r-1, 'Total1dose']),
-                    'Ful vax: {:,.0f}'.format(df.loc[r-1, 'Total2dose']),
-                    'Pop. 1st: %.2f'% pop1 + '%',
-                    'Pop. full vax: %.2f'% pop2 + '%',
+recent = '\n'.join(('1 dose: {:,.0f}'.format(df.loc[r-1, 'Total1dose']),
+                    '2 doses: {:,.0f}'.format(df.loc[r-1, 'Total2dose']),
+                    'Pop. 1dose: %.2f'% pop1 + '%',
+                    'Pop. 2doses: %.2f'% pop2 + '%',
     df.loc[r-1, 'Data']))
 y1.text(0.05, 0.95, recent, transform=y1.transAxes, fontsize=14,
         verticalalignment='top', bbox=props)
@@ -1593,7 +1607,7 @@ y1.annotate(r'$\times$10$^{%i}$'%(exponent_axis),  rotation = 90,
 y1.legend(loc='upper center', bbox_to_anchor=(0.38, 0.86), frameon=False, ncol=1)
 plt.text(194, 1.1e6, 'Me\n↓')
 plt.text(252, 1.1e6, 'Me\n↓')
-plt.text(378, 7e5, 'Me\n↓')
+plt.text(378, 8e5, 'Me\n↓')
 
 CWBflag = plt.imread(r'C:\Users\Bruno\Documents\GitHub\COVID_data_comp\Bandeira\Flag_Curitiba.png')
 newax = fig.add_axes([0.1, 0.86, 0.06, 0.06], zorder=1)
