@@ -1522,7 +1522,7 @@ y1 = fig.add_subplot(gs[4,0:2])
 y1.plot(df['Data'], df['Total1dose'], color = 'orange', label='1st dose')
 y1.plot(df['Data'], df['Total2dose'], color = 'green', label='2nd + single dose')
 y1.plot(df['Data'], df['Reforco'], color = 'purple', label='3rd dose')
-y1.plot(df['Data'], df['Reforco'], color = 'pink', label='3rd dose')
+y1.plot(df['Data'], df['Reforco2'], color = 'pink', label='4th dose')
 # Set plot title and axes labels
 
 #percentages text
