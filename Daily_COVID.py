@@ -1607,7 +1607,7 @@ y1.annotate(r'$\times$10$^{%i}$'%(exponent_axis),  rotation = 90,
 y1.legend(loc='upper center', bbox_to_anchor=(0.38, 0.86), frameon=False, ncol=1)
 plt.text(194, 1.1e6, 'Me\n↓')
 plt.text(252, 1.1e6, 'Me\n↓')
-plt.text(378, 8e5, 'Me\n↓')
+plt.text(378, 7.5e5, 'Me\n↓')
 
 CWBflag = plt.imread(r'C:\Users\Bruno\Documents\GitHub\COVID_data_comp\Bandeira\Flag_Curitiba.png')
 newax = fig.add_axes([0.1, 0.86, 0.06, 0.06], zorder=1)
