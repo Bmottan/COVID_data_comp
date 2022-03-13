@@ -37,7 +37,7 @@ else:
 htmlText = response.text
 
 # Write CSV file
-folder = r'C:\Users\Bruno\Documents\GitHub\COVID_data_comp\Import Data\\'
+folder = r'C:\Users\bruno\OneDrive\Documentos\GitHub\COVID_data_comp\Import Data\\'
 file2write=open(folder + today + "-BR.csv",'w')
 file2write.write(htmlText)
 file2write.close()
@@ -393,7 +393,7 @@ y1.legend(loc='upper center', bbox_to_anchor=(0.38, 0.86), frameon=False, ncol=1
 
 
 
-BRflag = plt.imread(r'C:\Users\Bruno\Documents\GitHub\COVID_data_comp\Bandeira\Flag_Brazil.png')
+BRflag = plt.imread(r'C:\Users\bruno\OneDrive\Documentos\GitHub\COVID_data_comp\Bandeira\Flag_Brazil.png')
 newax = fig.add_axes([0.593, 0.86, 0.06, 0.06], zorder=1)
 newax.imshow(BRflag, alpha=0.5)
 newax.axis('off')
@@ -705,7 +705,7 @@ y1.annotate(r'$\times$10$^{%i}$'%(exponent_axis),  rotation = 90,
 y1.legend(loc='upper center', bbox_to_anchor=(0.38, 0.86), frameon=False, ncol=1)
 
 
-PRflag = plt.imread(r'C:\Users\Bruno\Documents\GitHub\COVID_data_comp\Bandeira\Flag_Paraná.png')
+PRflag = plt.imread(r'C:\Users\bruno\OneDrive\Documentos\GitHub\COVID_data_comp\Bandeira\Flag_Paraná.png')
 newax = fig.add_axes([0.345, 0.86, 0.06, 0.06], zorder=1)
 newax.imshow(PRflag, alpha=0.5)
 newax.axis('off')
@@ -1116,7 +1116,7 @@ y1.annotate(r'$\times$10$^{%i}$'%(exponent_axis),  rotation = 90,
 y1.legend(loc='upper center', bbox_to_anchor=(0.38, 0.86), frameon=False, ncol=1)
 
 
-MAflag = plt.imread(r'C:\Users\Bruno\Documents\GitHub\COVID_data_comp\Bandeira\Flag_Massachusetts.jpg')
+MAflag = plt.imread(r'C:\Users\bruno\OneDrive\Documentos\GitHub\COVID_data_comp\Bandeira\Flag_Massachusetts.jpg')
 newax = fig.add_axes([0.84, 0.87, 0.06, 0.06], zorder=1)
 newax.imshow(MAflag, alpha=0.5)
 newax.axis('off')
@@ -1162,7 +1162,7 @@ total_casos = int(total_casos)
 
 nav.quit()
 
-CWB = pd.read_csv (r"C:\Users\Bruno\Documents\GitHub\COVID_data_comp\Import Data\CWB_data2.csv", sep=",")
+CWB = pd.read_csv (r"C:\Users\bruno\OneDrive\Documentos\GitHub\COVID_data_comp\Import Data\CWB_data2.csv", sep=",")
 
 
 i = CWB['date'].iloc[-1]
@@ -1197,7 +1197,7 @@ else:
 r = len(CWB)
 c = len(CWB.columns)
 
-CWB.to_csv(r"C:\Users\Bruno\Documents\GitHub\COVID_data_comp\Import Data\CWB_data2.csv", index=False)
+CWB.to_csv(r"C:\Users\bruno\OneDrive\Documentos\GitHub\COVID_data_comp\Import Data\CWB_data2.csv", index=False)
 
 #Calculate 7 day means - Cases
 CWBcases = CWB.loc[0:r, 'newCases']
@@ -1483,7 +1483,7 @@ dose4 = int(dose4.text)
 nav.quit()
 
 
-df = pd.read_csv (r'C:\Users\Bruno\Documents\GitHub\COVID_data_comp\Import Data\CWBvax.csv')
+df = pd.read_csv (r'C:\Users\bruno\OneDrive\Documentos\GitHub\COVID_data_comp\Import Data\CWBvax.csv')
 
 i = df['Data'].iloc[-1]
 i2 = datetime.strptime(i,'%d/%m/%Y')
@@ -1511,7 +1511,7 @@ else:
     df = df.append(df2, ignore_index=True)
 
 
-df.to_csv(r'C:\Users\Bruno\Documents\GitHub\COVID_data_comp\Import Data\CWBvax.csv', index=False)
+df.to_csv(r'C:\Users\bruno\OneDrive\Documentos\GitHub\COVID_data_comp\Import Data\CWBvax.csv', index=False)
 
 r = len(df)
 c = len(df.columns)
@@ -1609,7 +1609,7 @@ plt.text(194, 1.1e6, 'Me\n↓')
 plt.text(252, 1.1e6, 'Me\n↓')
 plt.text(378, 7.5e5, 'Me\n↓')
 
-CWBflag = plt.imread(r'C:\Users\Bruno\Documents\GitHub\COVID_data_comp\Bandeira\Flag_Curitiba.png')
+CWBflag = plt.imread(r'C:\Users\bruno\OneDrive\Documentos\GitHub\COVID_data_comp\Bandeira\Flag_Curitiba.png')
 newax = fig.add_axes([0.1, 0.86, 0.06, 0.06], zorder=1)
 newax.imshow(CWBflag, alpha=0.5)
 newax.axis('off')
@@ -1630,11 +1630,11 @@ fig.subplots_adjust(left=0.03, right=0.97, top=0.93, bottom=0.08)
 
 plt.show()
 
-folder = r'C:\Users\Bruno\Documents\GitHub\COVID_data_comp\Graphs\\'
+folder = r'C:\Users\bruno\OneDrive\Documentos\GitHub\COVID_data_comp\Graphs\\'
 fig.savefig(folder + today + ".png")
 
 # Update README file
-f = open(r"C:\Users\Bruno\Documents\GitHub\COVID_data_comp\README.md", "w")
+f = open(r"C:\Users\bruno\OneDrive\Documentos\GitHub\COVID_data_comp\README.md", "w")
 descrip = '''
 # COVID_data_comp
 COVID data compilation from CWB, PR, BR and MA.
@@ -1663,11 +1663,11 @@ f.close()
 
 print('Save complete. Updating Git...')
 
-
+#%%
 # Git commands to track version and upload to Github
 from git import Repo
 
-repo = Repo(r'C:\Users\Bruno\Documents\GitHub\COVID_data_comp\.git')
+repo = Repo(r'C:\Users\bruno\OneDrive\Documentos\GitHub\COVID_data_comp\.git')
 repo.git.add('--all')  # to add all the working files.
 repo.git.commit('-m', 'Daily update') #Commit and comment
 origin = repo.remote(name='origin')
