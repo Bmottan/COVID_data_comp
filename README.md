@@ -2,7 +2,7 @@
 # COVID_data_comp
 COVID data compilation from CWB, PR, BR and MA.
 
-<img src="Graphs/2022-04-24.png" >
+<img src="Graphs/2022-04-29.png" >
 
 
 ## Sources:
