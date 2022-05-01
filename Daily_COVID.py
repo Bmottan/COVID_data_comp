@@ -238,57 +238,6 @@ x_min = min(y1.get_xticks())
 y1 = fig.add_subplot(gs[2,4:6])
 
 
-##shade of vaccination 2 doses
-#percentages pop
-BRpop = 211000000
-marks = [BRpop*0.1, BRpop*0.2,BRpop*0.3, BRpop*0.4, BRpop*0.5, BRpop*0.6, BRpop*0.7,BRpop*0.8,BRpop*0.9,BRpop]
-marksv1 = []
-marksv2 = []
-marksv3=[]
-
-BR_fullvax=[]
-for x in BR.index:
-    if BR.at[x,'vaccinated_second']>1 and BR.at[x,'vaccinated_single']>1:
-        BR_fullvax.append(BR.at[x,'vaccinated_second']+BR.at[x,'vaccinated_single'])
-    else:
-        BR_fullvax.append(BR.at[x,'vaccinated_second'])
-
-c = 0
-for x in BR.index:
-    for y in range(len(marks)):
-        if marks[c]<=BR.at[x,'vaccinated'] and marks[c]>=BR.at[x-1,'vaccinated'] :
-            mark=x
-            marksv1.append(mark)
-            c=c+1
-c=0
-for x in BR.index:
-    for y in range(len(marks)):
-        if marks[c]<=BR_fullvax[x] and marks[c]>=BR_fullvax[x-1] :
-            mark=x
-            marksv2.append(mark)
-            c=c+1
-c=0
-for x in BR.index:
-    for y in range(len(marks)):
-        if marks[c]<=BR.at[x,'vaccinated_third'] and marks[c]>=BR.at[x-1,'vaccinated_third'] :
-            mark=x
-            marksv3.append(mark)
-            c=c+1
-txt=['10%','20%','30%','40%','50%','60%','70%','80%','90%','100%']
-
-#vaccination heatmap
-#BR['vacin'] = (BR['vaccinated_second']/BRpop)*100
-
-#BR['empty']=np.nan
-
-
-#y2 = plt.twinx()
-#sns.heatmap([BR['vacin'],BR['empty'],BR['empty'],BR['empty'],BR['empty'],BR['empty']], vmin=-25, vmax=100,
-#            cmap='jet_r', cbar=False, alpha=0.2)
-#y2.axes.get_xaxis().set_visible(False)
-#y2.axes.get_yaxis().set_visible(False)
-
-
 #New deaths graph
 
 y1.bar(BR.loc[0:310,'date'], BR.loc[0:310,'newDeaths'], color = '#ffc0cb')#2020
@@ -330,11 +279,70 @@ exponent_axis = np.floor(np.log10(ax_max)).astype(int)
 y1.annotate(r'$\times$10$^{%i}$'%(exponent_axis),  rotation = 90,
              xy=(0.01, .85), xycoords='axes fraction', fontsize=14, color='red')
 
-#y1.annotate(r'Fully vax:',xy=(280, 4000), fontsize=14, color='black')
-#top = [4000,4000,4000,4000,4000,4000,4000]
-#for i in range(len(marksv2)):
-#    y1.annotate('{}'.format(txt[i]),xy=(marksv2[i], top[i]), fontsize=14, color='black')
 
+#Frases do Bozo
+
+fr = pd.read_csv(r'C:\Users\bruno\OneDrive\Documentos\GitHub\COVID_data_comp\Import Data\frases_JB.txt')
+
+fr_dbr = []
+for u in BR.index:
+    dbr = datetime.strptime(BR.loc[u,'date'],'%Y-%m-%d')
+    fr_dbr.append(dbr)
+    
+fr_d = []
+for u in fr.index:
+    d = datetime.strptime(fr.loc[u,'data'],'%d/%m/%y')
+    fr_d.append(d)
+
+fr_i=[]
+
+for x in range(len(fr_d)):
+    for y in range(len(fr_dbr)):
+        if fr_d[x]==fr_dbr[y]:
+            fr_i.append(y)
+
+for i in range(len(fr_i)):
+    plt.text(fr_i[i], BR.loc[fr_i[i],'7dayMeanDeaths']+300, fr.loc[i,'frase'], rotation=90, fontsize=4, wrap=True)
+
+plt.text(-10, 500, 'Frases do Bozo:',rotation=90)
+
+
+#percentages pop
+BRpop = 211000000
+marks = [BRpop*0.1, BRpop*0.2,BRpop*0.3, BRpop*0.4, BRpop*0.5, BRpop*0.6, BRpop*0.7,BRpop*0.8,BRpop*0.9,BRpop]
+marksv1 = []
+marksv2 = []
+marksv3=[]
+
+BR_fullvax=[]
+for x in BR.index:
+    if BR.at[x,'vaccinated_second']>1 and BR.at[x,'vaccinated_single']>1:
+        BR_fullvax.append(BR.at[x,'vaccinated_second']+BR.at[x,'vaccinated_single'])
+    else:
+        BR_fullvax.append(BR.at[x,'vaccinated_second'])
+
+c = 0
+for x in BR.index:
+    for y in range(len(marks)):
+        if marks[c]<=BR.at[x,'vaccinated'] and marks[c]>=BR.at[x-1,'vaccinated'] :
+            mark=x
+            marksv1.append(mark)
+            c=c+1
+c=0
+for x in BR.index:
+    for y in range(len(marks)):
+        if marks[c]<=BR_fullvax[x] and marks[c]>=BR_fullvax[x-1] :
+            mark=x
+            marksv2.append(mark)
+            c=c+1
+c=0
+for x in BR.index:
+    for y in range(len(marks)):
+        if marks[c]<=BR.at[x,'vaccinated_third'] and marks[c]>=BR.at[x-1,'vaccinated_third'] :
+            mark=x
+            marksv3.append(mark)
+            c=c+1
+txt=['10%','20%','30%','40%','50%','60%','70%','80%','90%','100%']
 
 
 # Define x and y axes - Suplot 4vax
@@ -1412,7 +1420,7 @@ y1.annotate(r'$\times$10$^{%i}$'%(exponent_axis),  rotation = 90,
              xy=(0.01, .85), xycoords='axes fraction', fontsize=14, color='blue')
 
 plt.text(552, 0.5e3, 'Me\n↓')
-
+plt.text(747, 0.25e3, 'Greca\nlibera\ngeral\n↓', fontsize=8)
 
 # Define x and y axes - Suplot 3 new death
 y1 = fig.add_subplot(gs[2,0:2])
