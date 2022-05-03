@@ -5,7 +5,7 @@ data,frase
 20/4/20,"Eu não sou coveiro."
 28/4/20,"E daí, lamento. Quer que eu faça o que?"
 2/6/20,"A gente lamenta todos os mortos, mas é o destino de todo mundo."
-10/10/20,"País de maricas."
+10/10/20,"País de maricas!"
 17/12/20,"Se tomar vacina e virar jacaré não tenho nada a ver com isso."
 22/1/21,"Não há nada comprovado cientificamente sobre essa vacina aí."
 11/2/21,"O cara que entra na pilha da vacina é um idiota."
@@ -18,3 +18,4 @@ data,frase
 6/1/22,"Qual o interesse das pessoas taradas por vacina?"
 12/1/22,"Ômicron é bem-vinda. Dizem até que seria um vírus vacinal."
 22/1/22,"Lamento profundamente, mas é um número insignificante."
+28/4/22,"Jovem pega o vírus e é assintomático."
