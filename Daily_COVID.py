@@ -628,7 +628,7 @@ y1 = fig.add_subplot(gs[4,2:4])
 
 #percentages text
 PRpop = 11080000
-marks = [PRpop*0.1, PRpop*0.2,PRpop*0.3, PRpop*0.4, PRpop*0.5, PRpop*0.6, PRpop*0.7, PRpop*0.8, PRpop*0.9]
+marks = [PRpop*0.1, PRpop*0.2,PRpop*0.3, PRpop*0.4, PRpop*0.5, PRpop*0.6, PRpop*0.7, PRpop*0.8, PRpop*0.9,PRpop]
 marksv1 = []
 marksv2 = []
 marksv3=[]
@@ -661,7 +661,7 @@ for x in PR.index:
             mark=x
             marksv3.append(mark)
             c=c+1
-txt=['10%','20%','30%','40%','50%','60%','70%','80%']
+txt=['10%','20%','30%','40%','50%','60%','70%','80%','90%','100%']
 for i in range(len(marksv1)):
     plt.text(marksv1[i], marks[i], txt[i])
 for i in range(len(marksv2)):
